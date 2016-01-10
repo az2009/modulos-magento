@@ -1,0 +1,68 @@
+<script>
+	$jbp =  jQuery.noConflict();
+
+	$jbp(document).ready(function(){
+
+		$jbp('.bxslider').bxSlider({
+			auto:true,
+			mode: 'fade',
+			minSlides: 1,
+		    maxSlides: 6,
+		    moveSlides: 1,
+		    onSliderLoad: function(){
+	            $jbp('.bxslider').css('opacity','1');
+	        }
+		  });
+	});
+
+
+</script>
+
+
+
+<?php $_banner = $this->getBanner();
+
+if ($_banner && $_banner->getStatus()==1): ?>
+
+    <?php if ($_banner->getShowTitle()==1): ?>
+        <h3><?php echo $_banner->getTitle(); ?></h3>
+    <?php endif; ?>
+
+
+<ul class="bxslider" style="opacity:0">
+
+	<?php $_banner_items = $this->getBannerItems(); ?>
+
+            <?php foreach ($_banner_items as $_banner_item): ?>
+
+                <?php
+                        $today =  strtotime(date('Y-m-d'));
+                        $from  =  strtotime($_banner_item->item_active_from);
+                        $to    =  strtotime($_banner_item->item_active_to);
+
+                ?>
+
+                <?php if($today >= $from && $today <=  $to
+                         || $today >= $from && empty($to)
+                         || $today <= $to && empty($from)
+                         || empty($to) && empty($from)):
+                ?>
+
+                        <li>
+                                <a href="<?php echo $_banner_item->getLinkUrl(); ?>">
+                                    <?php if ($_banner_item->getImage()): ?>
+                                        <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$_banner_item->getImage()?>"
+                                             width="100%" alt="<?php echo $_banner_item->getContent()?>"/>
+                                    <?php elseif ($_banner_item->getImageUrl()): ?>
+                                        <img src="<?php echo $_banner_item->getImageUrl() ?>" width="<?php echo $_banner->getWidth().'px'?> "
+                                             height=" <?php echo $_banner->getHeight().'px'?>" alt="<?php echo $_banner_item->getContent()?>" />
+                                    <?php endif; ?>
+                                </a>
+                        </li>
+               <?php endif; ?>
+
+            <?php endforeach ?>
+</ul>
+
+
+<?php endif;?>

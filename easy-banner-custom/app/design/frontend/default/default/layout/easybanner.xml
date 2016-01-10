@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+	<reference name ="root">
+		<block type="core/text_list" name="bxslider_wrapper" as="bxslider_wrapper" translate="label">
+            <label>Bxslider</label>
+        </block>
+	</reference>
+
+    <reference name="bxslider_wrapper">
+	   	<block type="easybanner/banner" name="banner" template="easybanner/simpleslider.phtml">
+			<action method="setBannerId">
+				<banner_id>bannerHome</banner_id>
+			</action>
+          	</block>
+	</reference>
+
+	<cms_page>
+    	<reference name="head">
+			<action method="addItem"><script>skin_js</script><name>js/bxslider.js</name></action>
+			<action method="addCss"><name>css/bxslider.css</name></action>
+		</reference>
+	</cms_page>
+
+</layout>

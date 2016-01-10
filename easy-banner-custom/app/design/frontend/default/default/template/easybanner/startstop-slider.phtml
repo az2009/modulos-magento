@@ -1,0 +1,76 @@
+<?php if (Mage::getStoreConfig('easybanner/info/enabled')):?>
+<?php if ($this->isVisible()): ?>
+<script src="<?php echo $this->getSkinUrl('js/easybanner/jquery.aslideshow.js')?>" type="text/javascript"></script>
+<link href="<?php echo $this->getSkinUrl('css/easybanner3.css')?>" type="text/css" rel="stylesheet" />
+<?php $randnum = rand(100,9999); ?>
+<?php $_banner = $this->getBanner(); ?>
+<?php if ($_banner->getShowTitle()==1): ?>
+<h3><?php echo $_banner->getTitle(); ?></h3>
+<?php endif; ?>
+<div id="CustomSlideshow">       
+	<?php $_banner_items = $this->getBannerItems(); ?>
+	<?php foreach ($_banner_items as $_banner_item): ?>
+         <div>	
+			<a href="<?php echo $_banner_item->getLinkUrl(); ?>"> 
+	<?php if ($_banner_item->getImage()): ?>
+		<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$_banner_item->getImage()?>" 
+				width="<?php echo $_banner->getWidth().'px';?> " 
+				height=" <?php echo $_banner->getHeight().'px';?>" 
+				alt="<?php echo $_banner_item->getContent()?>"/>
+     <?php elseif ($_banner_item->getImageUrl()): ?>
+		<img src="<?php echo $_banner_item->getImageUrl()?>" 
+				width="<?php echo $_banner->getWidth().'px'?> " 
+				height=" <?php echo $_banner->getHeight().'px'?>" 
+				alt="<?php echo $_banner_item->getContent()?>" />
+     <?php endif; ?>
+			</a>
+			</div>
+        <?php endforeach ?>
+      
+<?php endif; ?>
+</div>
+<script type="text/javascript">
+var $j<?php echo $randnum;?> = jQuery.noConflict(); 
+
+		$j<?php echo $randnum;?>(document).ready(function() {
+		$j<?php echo $randnum;?>('#CustomSlideshow').slideshow({
+			width: <?php echo $_banner->getWidth()?>,        // width in px
+			height: <?php echo $_banner->getHeight() ?>,     // height in px
+			index: 0,        // start from frame number N
+			time: <?php echo $_banner->getDelay(); ?>,      // time out beetwen slides
+			title: false,     // show title
+			titleshow: false,// always show title
+			callback: null,  // callback function - call when slide changed - receive index and label
+			panel: true,     // show controls panel
+			play: true,      // play slideshow
+			loop: true,      // looping
+			effect: 'zoomFade',  // aviable fade, scrollUp/Down/Left/Right, zoom, zoomFade, growX, growY
+			effecttime: 800, // aviable fast,slow,normal and any valid fx speed value
+			filter: false,    // remove <br/>, empty <div>, <p> and other stuff
+			nextclick: false,      // bind content click next slide
+			playclick: false,      // bind content click play/stop
+			playhover: false,      // bind content hover play/stop
+			playhoverr: false,     // bind content hover stop/play (reverse of playhover)
+			playframe: false,       // show frame "Play Now!"
+			fullscreen: false,     // in full window size
+			imgresize: true,      // resize image to slideshow window
+			imgzoom: true,         // zoom image to slideshow window (for smaller side)
+			imgcenter: true,       // set image to center
+			imgajax: true,         // load images from links
+			linkajax: true,       // load html from links
+			help: '',
+
+				controls: {         // show/hide controls elements
+					'hide': false,   // show controls bar on mouse hover
+					'first': true,  // goto first frame
+					'prev': true,   // goto previouse frame (if it first go to last)
+					'play': true,    // play slideshow
+					'next': true,   // goto next frame (if it last go to first)
+					'last': true,   // goto last frame
+					'help': true,   // show help message
+					'counter': true  // show slide counter
+					}
+			});
+		});
+</script>
+<?php endif; ?>

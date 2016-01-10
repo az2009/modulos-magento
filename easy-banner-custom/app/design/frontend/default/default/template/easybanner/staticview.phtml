@@ -1,0 +1,25 @@
+<?php if (Mage::getStoreConfig('easybanner/info/enabled')):?>
+<?php if ($this->isVisible()): ?>
+	<?php $_banner = $this->getBanner(); ?>
+	
+	<?php if ($_banner->getShowTitle()==1): ?>
+	<h3><?php echo $_banner->getTitle(); ?></h3>
+	<?php endif; ?>
+	
+	<?php $_width = $_banner->getWidth(); ?>
+	<?php $_height = $_banner->getHeight(); ?>
+	
+
+	<?php $_banner_items = $this->getBannerItems(); ?>
+	<?php foreach ($_banner_items as $_banner_item): ?>		
+		<a href="<?php echo $_banner_item->getLinkUrl(); ?>">
+		<!-- Show image -->
+		<?php if ($_banner_item->getImage()): ?>
+			<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$_banner_item->getImage()?>" width="<?php echo $_banner->getWidth().'px'?> " height=" <?php echo $_banner->getHeight().'px'?>" alt="<?php echo $_banner_item->getContent()?>" />
+		<?php elseif ($_banner_item->getImageUrl()): ?>
+			<img src="<?php echo $_banner_item->getImageUrl() ?>" alt="<?php echo $_banner_item->getContent()?>" />
+		<?php endif; ?>
+		</a>	
+	<?php endforeach ?>
+<?php endif; ?> 
+<?php endif; ?>

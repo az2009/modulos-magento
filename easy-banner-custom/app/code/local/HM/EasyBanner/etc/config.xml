@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <HM_EasyBanner>
+            <version>0.1.2</version>
+        </HM_EasyBanner>
+    </modules>
+    <frontend>
+        <routers>
+            <easybanner>
+                <use>standard</use>
+                <args>
+                    <module>HM_EasyBanner</module>
+                    <frontName>easybanner</frontName>
+                </args>
+            </easybanner>
+        </routers>
+        <layout>
+            <updates>
+                <easybanner>
+                    <file>easybanner.xml</file>
+                </easybanner>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+			<easybanner>
+				<use>admin</use>
+				<args>
+					<module>HM_EasyBanner</module>
+					<frontName>easybanner</frontName>
+				</args>
+			</easybanner>
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			<easybanner module="easybanner">
+				<title>Easy Banner</title>
+				<sort_order>71</sort_order>               
+				<children>
+					<banners module="easybanner">
+						<title>Manage Banners</title>
+						<sort_order>0</sort_order>
+						<action>easybanner/adminhtml_banner</action>
+					</banners>
+				</children>
+				<children>
+					<banneritems module="easybanner">
+						<title>Manage Banner Items</title>
+						<sort_order>10</sort_order>
+						<action>easybanner/adminhtml_banneritem</action>
+					</banneritems>
+				</children>
+			</easybanner>
+		</menu>
+		
+		<acl>
+			<resources>
+				
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				
+				<admin>
+					<children>
+						
+						<easybanner translate="title" module="easybanner">
+						
+							<title>Easy Banner</title>
+							
+							<sort_order>71</sort_order>               
+							
+							<children>
+								<banners module="easybanner">
+									<title>Manage Banners</title>
+									<sort_order>0</sort_order>
+								</banners>
+							</children>
+							
+							<children>
+								<banneritems module="easybanner">
+									<title>Manage Banner Items</title>
+									<sort_order>10</sort_order>
+								</banneritems>
+							</children>
+							
+						</easybanner>
+						
+						<system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <easybanner translate="title" module="easybanner">
+                                            <title>Easy Banner</title>
+                                        </easybanner>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+						
+					</children>
+					
+				</admin>
+			</resources>
+		</acl>
+		
+		<layout>
+			<updates>
+				<easybanner>
+					<file>easybanner.xml</file>
+				</easybanner>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+        <models>
+            <easybanner>
+                <class>HM_EasyBanner_Model</class>
+                <resourceModel>easybanner_mysql4</resourceModel>
+            </easybanner>
+            <easybanner_mysql4>
+                <class>HM_EasyBanner_Model_Mysql4</class>
+                <entities>
+                    <banner>
+                        <table>easy_banner</table>
+                    </banner>
+                </entities>
+                <entities>
+                    <banneritem>
+                        <table>easy_banner_item</table>
+                    </banneritem>
+                </entities>
+            </easybanner_mysql4>
+        </models>
+        <resources>
+            <easybanner_setup>
+                <setup>
+                    <module>HM_EasyBanner</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </easybanner_setup>
+            <easybanner_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </easybanner_write>
+            <easybanner_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </easybanner_read>
+        </resources>
+        <blocks>
+            <easybanner>
+                <class>HM_EasyBanner_Block</class>
+            </easybanner>
+        </blocks>
+        <helpers>
+            <easybanner>
+                <class>HM_EasyBanner_Helper</class>
+            </easybanner>
+        </helpers>
+    </global>
+	<default>
+		<easybanner>
+			<info>
+				<enabled>1</enabled>
+			</info>
+		</easybanner>
+	</default>
+</config>
