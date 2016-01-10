@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<config>
+
+	<menu>
+        <creditpoint module="creditpoint">
+		   <title>Reward Points</title>
+			<sort_order>9999</sort_order>
+            <children>
+               <creditpoint translate="title" module="creditpoint">
+                    <title>Manage Reward Points</title>
+                    <sort_order>210</sort_order>
+                    <action>creditpoint/adminhtml_manage</action>
+                </creditpoint>
+            </children>
+        </creditpoint>
+    </menu>
+
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+
+                   <creditpoint translate="title" module="creditpoint">
+                      <title>Manage reward points</title>
+                      <sort_order>31</sort_order>
+                   </creditpoint>
+
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <creditpoint translate="title" module="creditpoint">
+                                        <title>Customer Credit Points</title>
+                                        <sort_order>80</sort_order>
+                                    </creditpoint>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

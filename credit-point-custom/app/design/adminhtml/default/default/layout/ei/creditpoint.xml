@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+	<ei_creditpoint_adminhtml_manage_index>
+		<reference name="content">
+			<block type="creditpoint/adminhtml_manage" name="creditpoint.manage" />
+		</reference>
+	</ei_creditpoint_adminhtml_manage_index>
+
+    <!--<adminhtml_customer_edit>
+        <reference name="customer_edit_tabs">
+            <action method="addTab" ifconfig="creditpoint/general/active">
+                <name>customer_edit_tab_creditpoint</name>
+                <block>creditpoint/adminhtml_customer_edit_tab_creditpoint</block>
+            </action>
+        </reference>
+    </adminhtml_customer_edit>-->
+
+    <adminhtml_customer_edit>
+        <reference name="customer_edit_tabs">
+            <action method="addTab" ifconfig="creditpoint/general/active">
+                <name>customer_edit_tab_creditpointhistory</name>
+                <block>creditpoint/adminhtml_customer_edit_tab_creditpointhistory</block>
+            </action>
+        </reference>
+    </adminhtml_customer_edit>
+
+    <adminhtml_sales_order_view>
+    	<reference name="content">
+    		<block type="creditpoint/adminhtml_manage" name="bdf" after="-" template="ei/creditpoint/teste.phtml" />
+    	</reference>
+    </adminhtml_sales_order_view>
+
+    <adminhtml_sales_order_creditmemo_new>
+    	<reference name="content">
+    		<block type="creditpoint/adminhtml_manage" name="bdf" after="-" template="ei/creditpoint/teste.phtml" />
+    	</reference>
+    </adminhtml_sales_order_creditmemo_new>
+
+    <adminhtml_sales_order_invoice_new>
+    	<reference name="content">
+    		<block type="creditpoint/adminhtml_manage" name="bdf" after="-" template="ei/creditpoint/teste.phtml" />
+    	</reference>
+    </adminhtml_sales_order_invoice_new>
+
+
+</layout>

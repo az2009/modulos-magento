@@ -1,0 +1,213 @@
+<?php
+$customerId = Mage::helper('creditpoint')->getCurrentCustomerId();
+$customerCreditPoints = Mage::helper('creditpoint')->getCustomerCreditPointsAssigned();
+$customerCollection = $this->getCollection();
+?>
+
+<?php $currentCurrency = Mage::helper('creditpoint')->getCurrentCurrencySymbol(); ?>
+<?php $creditPoints = Mage::helper('creditpoint')->getFormatCreditPoint($customerCreditPoints); ?>
+<?php $currentPointAmount = number_format(Mage::helper('creditpoint')->getPointCurrencyAmount($creditPoints), 2, '.', ''); ?>
+<?php $finalRatio = Mage::helper('creditpoint')->getPointCurrencyRatio(); ?>
+<?php $finalEarnedPointsRatio = Mage::helper('creditpoint')->getEarnedPointsRatio(); ?>
+
+
+<div class="box-account">
+    <div class="box-head">
+        <h2><?php echo $this->__('Credit Points Information') ?></h2>
+    </div>
+
+    <div>
+        <?php echo $this->__('Your Credit Points'); ?>:&nbsp;
+        <strong><?php echo $creditPoints; ?>&nbsp;<?php echo $this->__('Points'); ?>&nbsp;=&nbsp;<?php echo $currentCurrency; ?><?php echo $currentPointAmount; ?></strong>
+    </div>
+    <br/>
+    <div>
+        <?php echo $this->__('Points/Currency Exchange Rate'); ?>:&nbsp;<strong><?php echo $finalRatio; ?></strong>
+    </div>
+    <br/>
+    <div>
+        <?php echo $finalEarnedPointsRatio; ?>
+    </div>
+
+</div>
+
+
+<!--Credit Points Transaction History Starts-->
+<?php if ($customerCollection->getSize()): ?>
+
+    <?php echo $this->getPagerHtml(); ?>
+    <div class="box-account">
+        <div class="head box-head">
+            <h2>Credit Points Transaction History</h2>
+            <a href="javascript:void(0)" id="transaction_box_hander">Hide</a>
+        </div>
+        <div id="transaction_history_box" style="display: block;">
+            <table id="creditpoint-transaction-table" class="data-table">
+                <colgroup>
+                    <col width="1" />
+                    <col width="1" />
+                    <col width="1" />
+                    <col width="1" />
+                    <col width="1" />
+                    <col width="1" />
+                </colgroup>
+                <thead>
+                    <tr class="first last">
+                        <th style="text-align: center;"><?php echo $this->__('Order #'); ?></th>
+                            <th style="text-align: center;"><?php echo $this->__('Date'); ?></th>
+                            <th style="text-align: center;"><?php echo $this->__('Points Redeemed'); ?></th>
+                            <th style="text-align: center;"><?php echo $this->__('Points Price'); ?></th>
+                            <th style="text-align: center;"><?php echo $this->__('Points Earned'); ?></th>
+                            <th style="text-align: center;"><?php echo $this->__('Comments'); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <?php
+                    foreach ($customerCollection as $collection):
+
+                        $order = Mage::getModel('sales/order')->load($collection->getOrderId());
+                        $orderUrl = Mage::helper('creditpoint')->getOrderUrl($order->getEntityId());
+                        $orderDate = date('m/d/Y', strtotime($collection->getCreatedTime()));
+                        if ($collection->getEarnedCreditPoint() != 0):
+                    ?>
+
+                            <tr class="first odd">
+                                <td style="text-align: center;">
+                                    <?php if($collection->getOrderId() != -999):?>
+                                        <a href="<?php echo $orderUrl; ?>" target="_blank"><?php echo $order->getIncrementId(); ?></a>
+                                    <?php else: ?>
+                                        <span>Admin</span>
+                                    <?php endif; ?>
+                                </td>
+
+                                <td style="text-align: center;"><?php echo $orderDate; ?></td>
+
+                                <?php if($collection->getAppliedCreditPoint() > 0): ?>
+                                     <td style="text-align: center;color:red;">
+                                        <?php if($collection->getOrderId() == -999):?>
+                                            <?php echo $this->__('Cancelled') ?>
+                                        <?php endif;?>
+                                        -<?php echo number_format($collection->getAppliedCreditPoint()); ?>
+                                    </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;color:blue;"><?php echo number_format($collection->getAppliedCreditPoint()); ?></td>
+                                <?php endif;?>
+
+                                <?php if($collection->getAppliedCreditPointPrice() > 0): ?>
+                                    <td style="text-align: center;color:red;">-<?php echo Mage::helper('creditpoint')->getCurrentCurrencySymbol(); ?><?php echo $collection->getAppliedCreditPointPrice(); ?></td>
+                                <?php else: ?>
+                                    <td style="text-align: center;color:blue;"><?php echo Mage::helper('creditpoint')->getCurrentCurrencySymbol(); ?><?php echo $collection->getAppliedCreditPointPrice(); ?></td>
+                                <?php endif;?>
+
+                                <?php if($collection->getData('order_refund') == 1): ?>
+                                    <td style="text-align: center; color:red"> <?php echo $this->__('Cancelled').' -'.number_format($collection->getEarnedCreditPoint()); ?></td>
+                                <?php else: ?>
+                                    <td style="text-align: center; color:green">  <?php echo "+".number_format($collection->getEarnedCreditPoint()); ?></td>
+                                <?php endif; ?>
+
+                                    <td style="text-align: center;">
+                                      <?php if(!is_null($collection->getInfoComments())): ?>
+                                        <a href="javascript: void(0)" onclick="return popUpComment('<?php echo $collection->getInfoComments() ?>');"><?php echo $this->__('View')?></a>
+                                        <?php else: ?>
+                                        <span style="text-align: center;">-</span>
+                                    <?php endif; ?>
+                                    </td>
+
+
+                            </tr>
+
+                        <?php else: ?>
+
+                            <tr class="first odd">
+                                <td style="text-align: center;">
+                                    <?php if($collection->getOrderId() != -999):?>
+                                        <a href="<?php echo $orderUrl; ?>" target="_blank"><?php echo $order->getIncrementId(); ?></a>
+                                    <?php else: ?>
+                                        <span>Admin</span>
+                                    <?php endif; ?>
+                                </td>
+
+                                <td style="text-align: center;"><?php echo $orderDate; ?></td>
+
+                                <?php if($collection->getAppliedCreditPoint() > 0): ?>
+                                    <td style="text-align: center;color:red;">
+                                        <?php if($collection->getOrderId() == -999):?>
+                                            <?php echo $this->__('Cancelled') ?>
+                                        <?php endif;?>
+                                        -<?php echo number_format($collection->getAppliedCreditPoint()); ?>
+                                    </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;color:blue;"><?php echo number_format($collection->getAppliedCreditPoint()); ?></td>
+                                <?php endif;?>
+
+                                <?php if($collection->getAppliedCreditPointPrice() > 0): ?>
+                                    <td style="text-align: center;color:red;">-<?php echo Mage::helper('creditpoint')->getCurrentCurrencySymbol(); ?><?php echo $collection->getAppliedCreditPointPrice(); ?></td>
+                                <?php else: ?>
+
+                                        <?php if($collection->getOrderId() != -999):?>
+                                            <td style="text-align: center;color:blue;"><?php echo Mage::helper('creditpoint')->getCurrentCurrencySymbol(); ?><?php echo $collection->getAppliedCreditPointPrice(); ?></td>
+                                        <?php else: ?>
+                                            <td style="text-align: center;color:blue;">-</td>
+                                        <?php endif;?>
+                                <?php endif;?>
+
+                                <td style="text-align: center;color:blue"><?php echo $this->__('-'); ?></td>
+
+                                <td style="text-align: center;">
+                                    <?php if(!is_null($collection->getInfoComments())): ?>
+                                        <a href="javascript: void(0)" onclick="return popUpComment('<?php echo $collection->getInfoComments() ?>');"><?php echo $this->__('View')?></a>
+                                        <?php else: ?>
+                                        <span style="text-align: center;">-</span>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        <script type="text/javascript">decorateTable('creditpoint-transaction-table')</script>
+    </div>
+    <?php echo $this->getPagerHtml(); ?>
+<?php endif; ?>
+<!--Credit Points Transaction History Ends-->
+
+<div class="buttons-set">
+    <p class="back-link"><a href="<?php echo $this->getUrl('customer/account/') ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+</div>
+
+<script type="text/javascript">
+
+function popUpComment(content) {
+
+	var width  = 600;
+   	 var height = 480;
+   	 var left   = (screen.width  - width)/2;
+   	 var top    = (screen.height - height)/2;
+   	 var params = 'width='+width+', height='+height;
+   	 params += ', top='+top+', left='+left;
+   	 params += ', directories=no';
+   	 params += ', location=no';
+   	 params += ', menubar=no';
+   	 params += ', resizable=no';
+   	 params += ', scrollbars=no';
+   	 params += ', status=no';
+   	 params += ', toolbar=no';
+
+    var myWindow = window.open("", "", params);
+    myWindow.document.write(content);
+    myWindow.focus();
+}
+
+    $('transaction_box_hander').observe('click', function(event) {
+        Effect.toggle('transaction_history_box', 'slide');
+        if ($('transaction_history_box').visible()) {
+            $('transaction_box_hander').update('Show');
+        } else {
+            $('transaction_box_hander').update('Hide');
+        }
+        Event.stop(event);
+    });
+</script>

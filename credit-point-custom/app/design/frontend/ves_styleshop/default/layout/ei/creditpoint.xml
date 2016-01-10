@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<layout>
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="creditpoint" ifconfig="creditpoint/general/active">
+                <name>credit point</name>
+                <path>creditpoint/creditpoint/</path>
+                <label>My Credit Points</label>
+            </action>
+        </reference>
+    </customer_account>
+    <!--Namespace_Modulename_Controllername_Actionname-->
+    <ei_creditpoint_creditpoint_index translate="label">
+        <label>My Credit Points</label>
+        <reference name="head">
+            <action method="setTitle">
+                <title>My Credit Points</title>
+            </action>
+        </reference>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+        <!--<block type="customer/account_dashboard" name="customer_creditpoints" template="creditpoint/creditpoint.phtml"/>-->
+            <block type="creditpoint/creditpoint" name="creditpoint.pager" template="ei/creditpoint/creditpoint.phtml"/>
+        </reference>
+    </ei_creditpoint_creditpoint_index>
+    <!--Namespace_Modulename_Controllername_Actionname-->
+    
+    <!-- This will override the coupon output, then adds the coupon block back as well as our own custom creditpoint block-->
+    <checkout_cart_index>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/ei/creditpoint/creditpoint.slider.css</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/ei/creditpoint/creditpoint.slider.js</name><params/></action>
+        </reference>
+        <reference name="checkout.cart">
+            <block type="core/text_list" name="coupon.and.discount" as="coupon">
+                <action method="insert">
+                    <block>checkout.cart.coupon</block>
+                </action>
+                <block type="creditpoint/creditpoint" name="creditpoints.cart.block" as ="creditpointblock" template="ei/creditpoint/checkout/cart/creditpoint_cart.phtml" before="checkout.cart.coupon"/>
+            </block>
+        </reference>
+    </checkout_cart_index>
+    <!-- This will override the coupon output, then adds the coupon block back as well as our own custom creditpoint block-->
+</layout>

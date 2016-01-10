@@ -1,0 +1,50 @@
+
+#ei_creditpoint_incr_handle, #ei_creditpoint_decr_handle{
+    width: 18px;
+    height: 18px;
+    float:left;
+    margin-top: -5px;
+}
+
+#ei_creditpoint_incr_handle{
+    background: url("../../../images/ei/creditpoint/plus_normal.png") no-repeat scroll 0 0 transparent;
+    position: absolute;
+    right: -20px;
+}
+
+#ei_creditpoint_incr_handle:HOVER{
+    background: url("../../../images/ei/creditpoint/plus_hover.png") no-repeat scroll 0 0 transparent;
+}
+
+#ei_creditpoint_decr_handle{
+    background: url("../../../images/ei/creditpoint/minus_normal.png") no-repeat scroll 0 0 transparent;
+    position: absolute;
+    margin-left: -20px;
+}
+
+#ei_creditpoint_decr_handle:HOVER{
+    background: url("../../../images/ei/creditpoint/minus_hover.png") no-repeat scroll 0 0 transparent;
+}
+
+.ei_creditpoint_select { 
+    background: url("../../../images/ei/creditpoint/slider_circle.png") no-repeat scroll 0 0 transparent; 
+    font-weight: normal; 
+    color: #555555;
+    min-height: 16px;
+    cursor: default;
+    height: 2em;
+    margin-top: -5px;
+    position: absolute;
+    width: 1.9em;
+    z-index: 2;
+}
+
+.ei_creditpoint_slider_container{
+    background:url(../../../images/ei/creditpoint/slider_bg.png) repeat-x scroll 0 0 transparent;
+    margin-top: 18px;
+    margin-bottom: 5px;
+    margin-left:20px;
+    padding-right: 6px;
+    position: relative;
+    min-height: 10px;
+}

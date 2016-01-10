@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <creditpoint translate="label" module="creditpoint">
+            <class>separator-top</class>
+            <label>Customer Credit Points</label>
+            <tab>customer</tab>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label" module="creditpoint">
+                    <label>Credit Points Configuration</label>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+		    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enable Credit Points</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <points_currency translate="label">
+                            <label>Points / Currency Exchange Rate</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Format x/y (x points / y currency). X and Y must be integer. For ex: 10 points = $1</comment>
+                            <validate>required-entry</validate>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </points_currency>
+                        <points_earn translate="label">
+                            <label>Customer Earn Points Ratio</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Format x/y (x currency / y points). X and Y must be integer. For ex: $100 = 10 points (Customer will earn 10 points for every $100 spent)</comment>
+                            <sort_order>3</sort_order>
+                            <validate>required-entry</validate>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </points_earn>
+                        <minimum_credit_required translate="label">
+                            <label>Minimum Points required to be redeemed per purchase</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Set 0 or leave empty if no limitations.</comment>
+                            <validate>validate-number</validate>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </minimum_credit_required>
+                        <maximum_credit_allowed translate="label">
+                            <label>Maximum Points allowed to be redeemed per purchase</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Set 0 or leave empty if no limitations.</comment>
+                            <validate>validate-number</validate>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </maximum_credit_allowed>
+
+                        <minimum_subtotal translate="label">
+                            <label>Minimum Subtotal allowed to be redeemed per purchase</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Set 0 or leave empty if no limitations.</comment>
+                            <validate>validate-number</validate>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </minimum_subtotal>
+
+                        <order_status translate="label">
+                            <label>Add credit points to account balance when order status is</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>7</sort_order>
+                        <!--<source_model>adminhtml/system_config_source_order_status</source_model>-->
+                            <source_model>creditpoint_adminhtml/system_config_source_orderoptions</source_model>
+                            <validate>validate-select</validate>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_status>
+                        <restore_redeemed_credits translate="label">
+                            <label>Restore redeemed points when order is refunded</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>8</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </restore_redeemed_credits>
+                    </fields>
+                </general>
+            </groups>
+        </creditpoint>
+    </sections>
+</config>

@@ -1,0 +1,249 @@
+<?php
+$moduleStatus           = Mage::helper('creditpoint')->getModuleStatus();
+$customerLogin          = Mage::getSingleton('customer/session')->isLoggedIn();
+$totalItemsInCart       = Mage::helper('creditpoint')->getTotalItemsInCart();
+if ($moduleStatus == 1 && $customerLogin && $totalItemsInCart > 0) :
+    ?>
+
+    <?php
+    $subTotal           = Mage::helper('checkout/cart')->getQuote()->getSubtotal();
+    $grandTotal         = Mage::helper('checkout/cart')->getQuote()->getGrandTotal();
+    $subTotalConfigMin  = Mage::helper('creditpoint')->getOrderMinimum();
+    $creditPointCode    = Mage::helper('creditpoint')->getCode();
+    $EstimateCredit     = Mage::getSingleton('core/session')->getEstimateCredit();
+    $pointsRedeem       = Mage::getSingleton('core/session')->getPointsRedeem();
+    $formAction         = Mage::getBaseUrl() . 'creditpoint/creditpoint/estimateCreditPoint/';
+    $creditPoints       = Mage::helper('creditpoint')->getCustomerCreditPointsAssigned();
+    $finalRatio         = Mage::helper('creditpoint')->getPointCurrencyRatio();
+    $maxCreditConfig    = Mage::helper('creditpoint')->getMaximumCredit();
+    $minCreditConfig    = Mage::helper('creditpoint')->getMinimumCredit();
+
+    $currentPointAmount = number_format(Mage::helper('creditpoint')->getPointCurrencyAmount($creditPoints), 2, '.', '');
+    $ratio              = Mage::getStoreConfig('creditpoint/general/points_currency');
+    $formatRatio        = explode('/', $ratio);
+
+    $pointsRatio        = $formatRatio[0] / $formatRatio[1];
+    $subtotalCredit     = floor($pointsRatio * (int) $subTotal);
+
+
+    //
+    if (($maxCreditConfig == 0 || $maxCreditConfig == NULL) && ($currentPointAmount >= $subTotal)) {
+
+        $maxCredit = (int) $subtotalCredit;
+
+    } elseif (($maxCreditConfig == 0 || $maxCreditConfig == NULL) && ($currentPointAmount <= $subTotal)) {
+
+        $maxCredit = $creditPoints;
+
+        // } elseif (($maxCreditConfig >= $currentPointAmount)) {
+    } elseif (($maxCreditConfig >= $creditPoints)) {
+
+        $maxCredit = $creditPoints;
+
+        // } elseif (($maxCreditConfig <= $currentPointAmount)) {
+    } elseif (($maxCreditConfig <= $creditPoints)) {
+
+        $maxCredit = $maxCreditConfig;
+    } else {
+        $maxCredit = $maxCreditConfig;
+    }
+
+    // Caso a quantidade máxima de pontos seja maior que o subtotal em pontos
+    if ($maxCredit > $subtotalCredit) {
+        $maxCredit = (int) $subtotalCredit;
+    }
+
+    // Subtrai o subtotal com a quantidade de ponto em preço
+    $preSub = $subTotal - ($maxCredit / $pointsRatio);
+
+    // Verifica se o subtotal resultante e menor que o subtotal minimo determinado no admin
+    // Se sim transforma o subtotal minimo configurado para pontos aplica o mesmo como máximo de pontos que o usuário podera aplicar
+    if ($preSub < $subTotalConfigMin) {
+        $maxCredit = floor($pointsRatio * ($subTotal - $subTotalConfigMin));
+    }
+
+    ?>
+
+
+<form id="customer-creditpoint-form" action="<?php echo $formAction; ?>"
+	method="post">
+	<div class="discount">
+		<h2><?php echo $this->__('Redeem Credit Points'); ?></h2>
+		<div class="discount-form">
+
+			<input type="hidden" name="estimate_credit" id="estimate_credit"
+				value="<?php echo $this->escapeHtml($creditPointCode) ?>" />
+
+			<div style="padding-top: 5px;">
+				<label for="use_min_credit" style="display: inline !important;">
+                            <?php echo $this->__('Credit Points Available'); ?>:&nbsp;<strong><?php echo $creditPoints; ?></strong>
+					<strong>(<?php echo $finalRatio; ?>)</strong>
+				</label>
+			</div>
+
+			<!--Check minimum credit availability-->
+    <?php if ($minCreditConfig > $creditPoints): ?>
+                    <div style="padding-top: 5px;">
+				<label style="display: inline !important;">
+                            <?php echo $this->__('Minimum credit points required to redeem'); ?>:&nbsp;<strong><?php echo $minCreditConfig; ?>&nbsp;points</strong>
+				</label>
+			</div>
+    <?php elseif($maxCredit <  $pointsRatio):?>
+
+                    <div style="padding-top: 5px;">
+				<label style="display: inline !important;">
+                            <?php echo $this->__('Valor do pedido minimo para resgatar os pontos'); ?>:&nbsp;<strong><?php echo $subTotalConfigMin + 1; ?></strong>
+				</label>
+			</div>
+
+    <?php elseif (empty($creditPoints)): ?>
+                    <div style="padding-top: 5px;">
+				<label style="display: inline !important;">
+                          <?php echo $this->__('You do not have sufficient credit points.'); ?>
+                        </label>
+			</div>
+
+    <?php //Verifica se o subtotal é menor ou igual ao configurado no admin se sim trava o desconto ?>
+    <?php elseif($subTotal < $subTotalConfigMin && $subTotalConfigMin > 0): ?>
+
+                    <div style="padding-top: 5px;">
+				<label style="display: inline !important;">
+                            <?php echo $this->__('Minimum order for rescue points').' '.Mage::helper('creditpoint')->getCurrencyMinimumVal($subTotalConfigMin); ?>
+                        </label>
+			</div>
+    <?php else: ?>
+                    <div style="padding-top: 5px;">
+				<label style="display: inline !important;"><?php echo $this->__('Slide to redeem your credit points.'); ?></label>
+			</div>
+
+
+			<div style="width: 215px;" class="ei_creditpoint_slider_container"
+				id="ei_creditpoint_slider_container">
+				<div id="ei_creditpoint_decr_handle"></div>
+				<div id="ei_creditpoint_incr_handle"></div>
+				<div class="ei_creditpoint_select" id="ei_slider"
+					style="left: 214px;"></div>
+			</div>
+
+			<div style="padding: 15px 0 5px 0;">
+				<label for="credit_point">Points to redeem</label> <input disabled
+					style="color: #f6931f; width: 50px; text-align: center; font-size: 13px; font-weight: bold;"
+					type="text" name="credit_point" id="credit_point" /> <label
+					id="ei_label_amount"
+					style="color: #f6931f; font-weight: bold; display: none;"></label>
+			</div>
+
+			<div>
+				<input type="checkbox" name="use_max_credit_points"
+					id="use_max_credit_points" /> <label for="use_max_credit_points"
+					style="padding-left: 5px; display: inline !important;"><?php echo $this->__('Use maximum'); ?>&nbsp;<span
+					class="price"> <strong>(<?php echo $maxCredit; ?>&nbsp;points)</strong></span>
+				</label>
+			</div>
+
+            <?php endif; ?>
+            </div>
+	</div>
+
+
+	<div id="cart-totals-loading" style="display: none;">
+		<div style="text-align: center; margin-top: 30px;">
+			<img
+				src="http://demo.mage-world.com/1611/skin/frontend/default/default/mw_rewardpoints/images/loading.gif"
+				class="v-middle" alt="loading"> &nbsp;
+                <?php echo $this->__('Updating cart information...');?>
+           </div>
+	</div>
+</form>
+
+<script type="text/javascript">
+
+        var creditPointVal = '<?php echo $maxCredit; ?>';
+        var pointsRedeem = '<?php echo $pointsRedeem; ?>';
+        var time = 1000;
+        var time_new = 1500; //was 2000
+        var timer;
+        var ei_sider = new EiCreditPointSlider(
+                'credit_point',
+                'ei_creditpoint_slider_container',
+                'ei_slider',
+                'ei_creditpoint_decr_handle',
+                'ei_creditpoint_incr_handle',
+                0,
+                creditPointVal,
+                1,
+                'ei_label_amount',
+                'use_max_credit_points'
+                );
+
+
+        ei_sider.setPointChange(0);
+        ei_sider.changeCreditPointCallback = runTimer;
+
+        $('credit_point').observe('keyup', function(e) {
+
+            amount = this.value;
+            clearTimeout(timer);
+            timer = setTimeout("ei_sider.setPointChange(amount);", time_new);
+
+        });
+
+        if(pointsRedeem != '' && pointsRedeem == creditPointVal){
+          $('credit_point').value = pointsRedeem ;
+          $('use_max_credit_points').checked = true;
+        }else if(pointsRedeem != '' && pointsRedeem != creditPointVal){
+          $('credit_point').value = pointsRedeem ;
+        }
+
+        $('use_max_credit_points').observe('click', function(e) {
+
+            if (this.checked)
+                ei_sider.setPointChange(creditPointVal);
+            else
+                ei_sider.setPointChange(0);
+        });
+
+
+        function runTimer()
+        {
+            clearTimeout(timer);
+            timer = setTimeout("updateCreditPoints();", time);
+        }
+
+
+function updateCreditPoints()
+{
+	var amount = $('credit_point').value;
+	amount = parseInt(amount/1) * 1;
+	if(amount < 0) amount = 0;
+
+	$('shopping-cart-totals-table').update($('cart-totals-loading').innerHTML);
+
+        //'data' will be an Object after json is converted into a JS object
+        //and this object should have a property 'creditpointblock' with the HTML for the cart block.
+	new Ajax.Request("<?php echo $formAction;?>", {
+
+		   method: 'post',
+                   postBody: "pointsredeem="+$('credit_point').value + "&estimate_credit="+$('estimate_credit').value,
+
+		   onComplete: function(response) {
+                                var data = response.responseText.evalJSON(true);
+
+                                if(data.error == 'fail'){
+                                	$('shopping-cart-totals-table').update('<span style="color:red">Failure to apply the discount</span>');
+                                	$('credit_point').value = '<?php echo $maxCredit; ?>';
+                                	setTimeout("updateCreditPoints();", 0);
+                                }else{
+                             	      $('shopping-cart-totals-table').update(data.creditpointblock);
+                                    }
+			}
+	});
+}
+
+</script>
+
+<script>setTimeout("updateCreditPoints();", 0)</script>
+
+
+
+<?php endif; ?>
