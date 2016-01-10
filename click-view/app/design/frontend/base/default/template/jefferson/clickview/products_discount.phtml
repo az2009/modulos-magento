@@ -1,0 +1,80 @@
+<?php
+	$getImgSize = $this->getDiscountImgSize();
+	$num		= $this->getDiscountRows();
+	$_products  = $this->getProductsDiscount($num);
+?>
+
+<div class="container clickview">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="subtitle"><?php echo $this->__('Price lowered') ?></h2>
+		</div>
+		<div class="col-md-12">
+			<ul class="bxslider_clickview_best_selling">
+				<?php foreach($_products as $item){ ?>
+					
+					<li>
+						<figure>
+				
+							<a href="<?php echo $item->getProductUrl() ?>" 
+			                	title="<?php echo $this->stripTags($this->getImageLabel($item, 'small_image'), null, true) ?>"  class="product-image">
+								<img src="<?php echo $this->helper('catalog/image')->init($item, 'small_image')->keepFrame(true)->resize($getImgSize,$getImgSize); ?>" />
+			         		</a>
+							
+							<?php if($item->getSpecialPrice() > 0 ): ?>    
+							     <span class="perc"> <?php echo $this->getPerc($item->getPrice(), $item->getSpecialPrice() );  ?></span>	
+					         <?php endif; ?>   
+					         
+							<figcaption>
+								 
+								 <a href="<?php echo $item->getProductUrl() ?>" 
+					             	title="<?php echo $this->stripTags($this->getImageLabel($item, 'small_image'), null, true) ?>"
+					             	class="product-image">   
+					                	<?php echo $item->getName(); ?>
+					             </a>	
+					             
+					             <?php echo $this->getPriceHtml($item, true) ?>
+					             
+					             <div class="product-secondary">
+								 														              	
+				                        <?php if(!$item->canConfigure() && $item->isSaleable()): ?>
+				                            
+				                            <p class="action">
+				                            	<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" 
+				                            	onclick="setLocation('<?php echo $this->getAddToCartUrl($item) ?>')">
+				                            		<span>
+				                            			<span>
+				                            				<?php echo $this->__('Add to Cart') ?>
+				                            			</span>
+				                            		</span>
+				                            	</button>
+				                            </p>
+				                            
+				                        <?php elseif($item->getStockItem() && $item->getStockItem()->getIsInStock()): ?>
+				                        
+				                            <p class="action">
+				                            	<a title="<?php echo $this->__('View Details') ?>" class="button"
+				                            	href="<?php echo $item->getProductUrl() ?>"><?php echo $this->__('View Details') ?>
+				                            	</a>
+				                            </p>
+				                            
+				                        <?php else: ?>
+				                        
+				                            <p class="action availability out-of-stock">
+				                            	<span><?php echo $this->__('Out of stock') ?></span>
+				                            </p>
+				                            
+				                        <?php endif; ?>
+				                        
+					             </div>
+					             
+							</figcaption>
+							
+						</figure>
+					</li>
+					
+				<?php } ?>
+			</ul>
+		</div>
+	</div>
+</div>

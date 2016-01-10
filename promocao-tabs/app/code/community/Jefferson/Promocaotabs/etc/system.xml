@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * @category    Jefferson
+ * @package     Jefferson_Promocaotabs
+ * @author		Jefferson Batista Porto <jefferson.b.porto@gmail.com>
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ *
+ */
+-->
+
+<config>
+    <sections>
+    	<catalog>
+    		<groups>
+    			<jefferson_promocaotabs>
+    				<label>Products in tabs on the home</label>
+    				<sort_order>99</sort_order>
+    				<show_in_default>1</show_in_default>
+                     <show_in_website>1</show_in_website>
+                     <show_in_store>1</show_in_store>
+	                    
+	                    <fields>
+	                    	
+	                    	<img_size translate="label">
+	                        	<label>Image size</label>
+	                        	<frontend_type>text</frontend_type>
+	                        	<sort_order>1</sort_order>
+	                            <show_in_default>1</show_in_default>
+	                            <show_in_website>1</show_in_website>
+	                            <show_in_store>1</show_in_store>
+	                        </img_size>
+	                        
+	                        <category_list  translate="label">
+	                            <label>Category</label>
+	                            <comment>Select the categories</comment>
+	                            <frontend_type>multiselect</frontend_type>
+	                            <source_model>promocaotabs/system_config_source_category</source_model>
+	                            <sort_order>1</sort_order>
+	                            <show_in_default>1</show_in_default>
+	                            <show_in_website>1</show_in_website>
+	                            <show_in_store>1</show_in_store>
+	                        </category_list>
+	                        
+	                        <category_qty  translate="label">
+	                            <label>Number of rows</label>
+	                            <comment>Enter the quantity of products to be listed in the tabs.</comment>
+	                            <frontend_type>text</frontend_type>
+	                            <sort_order>1</sort_order>
+	                            <show_in_default>1</show_in_default>
+	                            <show_in_website>1</show_in_website>
+	                            <show_in_store>1</show_in_store>
+	                        </category_qty>
+
+							<overview_perc  translate="label">
+	                            <label>Enable visualization of the discount</label>
+	                            <frontend_type>select</frontend_type>
+	                            <source_model>adminhtml/system_config_source_yesno</source_model>
+	                            <sort_order>1</sort_order>
+	                            <show_in_default>1</show_in_default>
+	                            <show_in_website>1</show_in_website>
+	                            <show_in_store>1</show_in_store>
+	                        </overview_perc>
+							
+	                        <enable  translate="label">
+	                            <label>Enable Module</label>
+	                            <frontend_type>select</frontend_type>
+	                            <source_model>adminhtml/system_config_source_yesno</source_model>
+	                            <sort_order>1</sort_order>
+	                            <show_in_default>1</show_in_default>
+	                            <show_in_website>1</show_in_website>
+	                            <show_in_store>1</show_in_store>
+	                        </enable>
+							
+	                        
+	                    </fields>
+	                    
+    			</jefferson_promocaotabs>
+    		</groups>
+	        
+	    </catalog> 
+	        
+    </sections>
+</config>

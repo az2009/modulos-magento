@@ -1,0 +1,842 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Jefferson
+ * @package     Jefferson_Clickview
+ * @author		Jefferson Batista Porto <jefferson.b.porto@gmail.com>
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ *
+ */
+-->
+
+<config>
+	<tabs>
+		<clickview translate="label" module="clickview">
+			<label>Top Home Store</label>
+			<sort_order>99999</sort_order>
+		</clickview>
+	</tabs>
+	<!--Click view click-->
+	<sections>
+		<clickview_options translate="label" module="clickview">
+			<label>Last click</label>
+			<tab>clickview</tab>
+			<frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>    
+            
+            	<groups translate="label">
+            		
+            		<clickview_general>
+            			<label>General</label>
+            			<frontend_type>text</frontend_type>
+	                    <sort_order>1</sort_order>
+	                    <show_in_default>1</show_in_default>
+	                    <show_in_website>1</show_in_website>
+	                    <show_in_store>1</show_in_store>   
+	            
+	                    	<fields>
+	                    		
+	                    		<clickview_click_number_rows translate="label">
+	                    			<label>Number in the results</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_click_number_rows>
+	                    		
+	                    		<clickview_img_size>
+	                    			<label>Product image size</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_img_size>
+	                    		
+	                    		<clickview_click_enabled translate="label">
+	                    			<label>Enabled</label>	
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>adminhtml/system_config_source_yesno</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_click_enabled>
+	                    		
+	                    	</fields>
+	                    	
+            		</clickview_general>
+            		
+            	</groups>
+            	
+		</clickview_options>
+	</sections>
+	
+	<!--Click view click recents-->
+	<sections>
+		<clickview_click_recents translate="label" module="clickview">
+			<label>Click recents</label>
+			<tab>clickview</tab>
+			<frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>    
+            
+            	<groups translate="label">
+            		
+            		<clickview_click_recents_general>
+            			<label>General</label>
+            			<frontend_type>text</frontend_type>
+	                    <sort_order>1</sort_order>
+	                    <show_in_default>1</show_in_default>
+	                    <show_in_website>1</show_in_website>
+	                    <show_in_store>1</show_in_store>   
+	            
+	                    	<fields>
+	                    		
+	                    		<clickview_img_size>
+	                    			<label>Product image size</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_img_size>
+	                    		
+	                    		<clickview_click_enabled translate="label">
+	                    			<label>Enabled</label>	
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>adminhtml/system_config_source_yesno</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_click_enabled>
+	                    		
+	                    	</fields>
+	                    	
+            		</clickview_click_recents_general>
+            		
+            	</groups>
+            	
+		</clickview_click_recents>
+	</sections>
+	
+	<!--Get the best-selling products-->
+	<sections>
+		<clickview_best_seller translate="label" module="clickview">
+			<label>Best Seller</label>
+			<tab>clickview</tab>
+			<frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>    
+            
+            	<groups translate="label">
+            		
+            		<clickview_best_seller_general>
+            			<label>General</label>
+            			<frontend_type>text</frontend_type>
+	                    <sort_order>1</sort_order>
+	                    <show_in_default>1</show_in_default>
+	                    <show_in_website>1</show_in_website>
+	                    <show_in_store>1</show_in_store>   
+	            
+	                    	<fields>
+	                    		
+	                    		<clickview_click_number_rows translate="label">
+	                    			<label>Number in the results</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_click_number_rows>
+	                    		
+	                    		<clickview_img_size>
+	                    			<label>Product image size</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_img_size>
+	                    		
+	                    		<clickview_click_enabled translate="label">
+	                    			<label>Enabled</label>	
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>adminhtml/system_config_source_yesno</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_click_enabled>
+	                    		
+	                    	</fields>
+	                    	
+            		</clickview_best_seller_general>
+            		
+            	</groups>
+            	
+		</clickview_best_seller>
+	</sections>
+	
+	<!--Get the most viewed products-->
+	<sections>
+		<clickview_most_views translate="label" module="clickview">
+			<label>Most Viewed</label>
+			<tab>clickview</tab>
+			<frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>    
+            
+            	<groups translate="label">
+            		
+            		<clickview_most_views_general>
+            			<label>General</label>
+            			<frontend_type>text</frontend_type>
+	                    <sort_order>1</sort_order>
+	                    <show_in_default>1</show_in_default>
+	                    <show_in_website>1</show_in_website>
+	                    <show_in_store>1</show_in_store>   
+	            
+	                    	<fields>
+	                    		
+	                    		<clickview_click_number_rows translate="label">
+	                    			<label>Number in the results</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_click_number_rows>
+	                    		
+	                    		<clickview_img_size>
+	                    			<label>Product image size</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_img_size>
+	                    		
+	                    		<clickview_click_enabled translate="label">
+	                    			<label>Enabled</label>	
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>adminhtml/system_config_source_yesno</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_click_enabled>
+	                    		
+	                    	</fields>
+	                    	
+            		</clickview_most_views_general>
+            		
+            	</groups>
+            	
+		</clickview_most_views>
+	</sections>
+	
+	<!--Products discount-->
+	
+	<sections>
+		<clickview_product_discount translate="label" module="clickview">
+			<label>Products discount</label>
+			<tab>clickview</tab>
+			<frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>    
+            
+            	<groups translate="label">
+            		
+            		<clickview_products_discount_general>
+            			<label>General</label>
+            			<frontend_type>text</frontend_type>
+	                    <sort_order>1</sort_order>
+	                    <show_in_default>1</show_in_default>
+	                    <show_in_website>1</show_in_website>
+	                    <show_in_store>1</show_in_store>   
+	            
+	                    	<fields>
+	                    		
+	                    		<clickview_click_number_rows translate="label">
+	                    			<label>Number in the results</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_click_number_rows>
+	                    		
+	                    		<clickview_img_size>
+	                    			<label>Product image size</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_img_size>
+	                    		
+	                    		<clickview_click_enabled translate="label">
+	                    			<label>Enabled</label>	
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>adminhtml/system_config_source_yesno</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_click_enabled>
+	                    		
+	                    	</fields>
+	                    	
+            		</clickview_products_discount_general>
+            		
+            	</groups>
+            	
+		</clickview_product_discount>
+	</sections>
+	
+	<!--Products release-->
+	
+	<sections>
+		<clickview_product_release translate="label" module="clickview">
+			<label>Products release</label>
+			<tab>clickview</tab>
+			<frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>    
+            
+            	<groups translate="label">
+            		
+            		<clickview_product_release_general>
+            			<label>General</label>
+            			<frontend_type>text</frontend_type>
+	                    <sort_order>1</sort_order>
+	                    <show_in_default>1</show_in_default>
+	                    <show_in_website>1</show_in_website>
+	                    <show_in_store>1</show_in_store>   
+	            
+	                    	<fields>
+	                    		<clickview_img_size>
+	                    			<label>Product image size</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_img_size>
+	                    		
+	                    		<clickview_click_enabled translate="label">
+	                    			<label>Enabled</label>	
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>adminhtml/system_config_source_yesno</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_click_enabled>
+	                    		
+	                    	</fields>
+	                    	
+            		</clickview_product_release_general>
+            		
+            	</groups>
+            	
+		</clickview_product_release>
+	</sections>
+	
+	
+	<!---->
+	
+	<!--Filter by category-->
+	
+	<sections>
+		<clickview_by_category translate="label" module="clickview">
+			<label>Filter by category</label>
+			<tab>clickview</tab>
+			<frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>    
+            
+            	<groups translate="label">
+            		
+            		<clickview_most_viewed_by_category>
+            			<label>Most viewed by category</label>
+            			<frontend_type>text</frontend_type>
+	                    <sort_order>1</sort_order>
+	                    <show_in_default>1</show_in_default>
+	                    <show_in_website>1</show_in_website>
+	                    <show_in_store>1</show_in_store>   
+	            
+	                    	<fields>
+
+	                    		<clickview_category_slidemargin>
+	                    			<label>Margin of the slide</label>	
+	                    			<frontend_type>text</frontend_type>
+	                    			<sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_slidemargin>
+
+
+	                    		<clickview_category_slidewidth>
+	                    			<label>Maximum width of the slider</label>	
+	                    			<frontend_type>text</frontend_type>
+	                    			<sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_slidewidth>
+
+
+	                    		<clickview_category_maxslider>
+	                    			<label>Maximum amount slider</label>	
+	                    			<frontend_type>text</frontend_type>
+	                    			<sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_maxslider>
+
+	                    		<clickview_category_minslider>
+	                    			<label>Minimum amount slider</label>	
+	                    			<frontend_type>text</frontend_type>
+	                    			<sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_minslider>
+							    
+	                    		<clickview_category_allowed>
+	                    			<label>Select the categories allowed</label>	
+	                    			<frontend_type>multiselect</frontend_type>
+	                    			<source_model>clickview/system_config_source_category</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_allowed>
+							    
+							    <clickview_category_default>
+	                    			<label>Select the default category</label>	
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>clickview/system_config_source_categoryallowed</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_default>
+	                    		
+	                    		<clickview_click_number_rows translate="label">
+	                    			<label>Number in the results</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							        <comment>Enter the number of products that will appear in the slider</comment>
+	                    		</clickview_click_number_rows>
+	                    		
+	                    		<clickview_img_size>
+	                    			<label>Product image size</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							        <comment>Notify the image size of the product</comment>
+	                    		</clickview_img_size>
+	                    		
+	                    		<clickview_slide_mode>
+	                    			<label>Select the default category</label>	
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>clickview/system_config_source_mode</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_slide_mode>
+							    
+  								<clickview_click_enabled translate="label">
+	                    			<label>Enabled</label>	
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>adminhtml/system_config_source_yesno</source_model>
+							        <sort_order>0</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							        <comment>Enabled/Disabled the function Click Recents</comment>
+	                    		</clickview_click_enabled>
+
+							    
+	                    	</fields>
+	                    	
+            		</clickview_most_viewed_by_category>
+            		
+            <!--Best seller by categry-->
+            		
+            		<clickview_best_seller_by_category>
+            			<label>Best seller by category</label>
+            			<frontend_type>text</frontend_type>
+	                    <sort_order>1</sort_order>
+	                    <show_in_default>1</show_in_default>
+	                    <show_in_website>1</show_in_website>
+	                    <show_in_store>1</show_in_store>   
+	            
+	                    	<fields>
+								
+								<clickview_click_enabled translate="label">
+	                    			<label>Enabled</label>	
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>adminhtml/system_config_source_yesno</source_model>
+							        <sort_order>0</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							        <comment>Enabled/Disabled the function Click Recents</comment>
+	                    		</clickview_click_enabled>
+	                    		
+	                    		<clickview_category_slidemargin>
+	                    			<label>Margin of the slide</label>	
+	                    			<frontend_type>text</frontend_type>
+	                    			<sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_slidemargin>
+
+
+	                    		<clickview_category_slidewidth>
+	                    			<label>Maximum width of the slider</label>	
+	                    			<frontend_type>text</frontend_type>
+	                    			<sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_slidewidth>
+
+
+	                    		<clickview_category_maxslider>
+	                    			<label>Maximum amount slider</label>	
+	                    			<frontend_type>text</frontend_type>
+	                    			<sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_maxslider>
+
+	                    		<clickview_category_minslider>
+	                    			<label>Minimum amount slider</label>	
+	                    			<frontend_type>text</frontend_type>
+	                    			<sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_minslider>
+							    
+	                    		<clickview_category_allowed>
+	                    			<label>Select the categories allowed</label>	
+	                    			<frontend_type>multiselect</frontend_type>
+	                    			<source_model>clickview/system_config_source_category</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_allowed>
+							    
+							    <clickview_category_default>
+	                    			<label>Select the default category</label>	
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>clickview/system_config_source_Categorybestsellerbycategory</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_default>
+	                    		
+	                    		<clickview_click_number_rows translate="label">
+	                    			<label>Number in the results</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							        <comment>Enter the number of products that will appear in the slider</comment>
+	                    		</clickview_click_number_rows>
+	                    		
+	                    		<clickview_img_size>
+	                    			<label>Product image size</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							        <comment>Notify the image size of the product</comment>
+	                    		</clickview_img_size>
+	                    		
+	                    		<clickview_slide_mode>
+	                    			<label>Select the default category</label>	
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>clickview/system_config_source_mode</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_slide_mode>
+							    
+	                    	</fields>
+	                    	
+            		</clickview_best_seller_by_category>
+            		
+            <!--News products by category-->
+            		
+            		<clickview_news_products_by_category>
+            			<label>News products by category</label>
+            			<frontend_type>text</frontend_type>
+	                    <sort_order>1</sort_order>
+	                    <show_in_default>1</show_in_default>
+	                    <show_in_website>1</show_in_website>
+	                    <show_in_store>1</show_in_store>   
+	            
+	                    	<fields>
+								
+								<clickview_click_enabled translate="label">
+	                    			<label>Enabled</label>	
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>adminhtml/system_config_source_yesno</source_model>
+							        <sort_order>0</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							        <comment>Enabled/Disabled the function Click Recents</comment>
+	                    		</clickview_click_enabled>
+	                    		
+	                    		<clickview_category_slidemargin>
+	                    			<label>Margin of the slide</label>	
+	                    			<frontend_type>text</frontend_type>
+	                    			<sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_slidemargin>
+
+
+	                    		<clickview_category_slidewidth>
+	                    			<label>Maximum width of the slider</label>	
+	                    			<frontend_type>text</frontend_type>
+	                    			<sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_slidewidth>
+
+
+	                    		<clickview_category_maxslider>
+	                    			<label>Maximum amount slider</label>	
+	                    			<frontend_type>text</frontend_type>
+	                    			<sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_maxslider>
+
+	                    		<clickview_category_minslider>
+	                    			<label>Minimum amount slider</label>	
+	                    			<frontend_type>text</frontend_type>
+	                    			<sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_minslider>
+							    
+	                    		<clickview_category_allowed>
+	                    			<label>Select the categories allowed</label>	
+	                    			<frontend_type>multiselect</frontend_type>
+	                    			<source_model>clickview/system_config_source_category</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_allowed>
+							    
+							    <clickview_category_default>
+	                    			<label>Select the default category</label>	
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>clickview/system_config_source_Categorynewsproducts</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_default>
+	                    		
+	                    		<clickview_click_number_rows translate="label">
+	                    			<label>Number in the results</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							        <comment>Enter the number of products that will appear in the slider</comment>
+	                    		</clickview_click_number_rows>
+	                    		
+	                    		<clickview_img_size>
+	                    			<label>Product image size</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							        <comment>Notify the image size of the product</comment>
+	                    		</clickview_img_size>
+	                    		
+	                    		<clickview_slide_mode>
+	                    			<label>Select the default category</label>	
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>clickview/system_config_source_mode</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_slide_mode>
+							    
+	                    	</fields>
+	                    	
+            		</clickview_news_products_by_category>
+            		
+           	<!--Products promotion by category-->
+            		
+            		<clickview_products_promotion_by_category>
+            			<label>Products promotion by category</label>
+            			<frontend_type>text</frontend_type>
+	                    <sort_order>1</sort_order>
+	                    <show_in_default>1</show_in_default>
+	                    <show_in_website>1</show_in_website>
+	                    <show_in_store>1</show_in_store>   
+	            
+	                    	<fields>
+								
+								<clickview_click_enabled translate="label">
+	                    			<label>Enabled</label>	
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>adminhtml/system_config_source_yesno</source_model>
+							        <sort_order>0</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							        <comment>Enabled/Disabled the function Click Recents</comment>
+	                    		</clickview_click_enabled>
+	                    		
+	                    		<clickview_category_slidemargin>
+	                    			<label>Margin of the slide</label>	
+	                    			<frontend_type>text</frontend_type>
+	                    			<sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_slidemargin>
+
+
+	                    		<clickview_category_slidewidth>
+	                    			<label>Maximum width of the slider</label>	
+	                    			<frontend_type>text</frontend_type>
+	                    			<sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_slidewidth>
+
+
+	                    		<clickview_category_maxslider>
+	                    			<label>Maximum amount slider</label>	
+	                    			<frontend_type>text</frontend_type>
+	                    			<sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_maxslider>
+
+	                    		<clickview_category_minslider>
+	                    			<label>Minimum amount slider</label>	
+	                    			<frontend_type>text</frontend_type>
+	                    			<sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_minslider>
+							    
+	                    		<clickview_category_allowed>
+	                    			<label>Select the categories allowed</label>	
+	                    			<frontend_type>multiselect</frontend_type>
+	                    			<source_model>clickview/system_config_source_category</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_allowed>
+							    
+							    <clickview_category_default>
+	                    			<label>Select the default category</label>	
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>clickview/system_config_source_Categorypromotionproducts</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_category_default>
+	                    		
+	                    		<clickview_click_number_rows translate="label">
+	                    			<label>Number in the results</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							        <comment>Enter the number of products that will appear in the slider</comment>
+	                    		</clickview_click_number_rows>
+	                    		
+	                    		<clickview_img_size>
+	                    			<label>Product image size</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							        <comment>Notify the image size of the product</comment>
+	                    		</clickview_img_size>
+	                    		
+	                    		<clickview_slide_mode>
+	                    			<label>Select the default category</label>	
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>clickview/system_config_source_mode</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>   
+							    </clickview_slide_mode>
+							    
+	                    	</fields>
+	                    	
+            		</clickview_products_promotion_by_category>
+            	</groups>
+            	
+		</clickview_by_category>
+	</sections>
+	
+</config>

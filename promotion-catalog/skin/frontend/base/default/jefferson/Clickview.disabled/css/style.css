@@ -1,0 +1,31 @@
+
+.clickview .bx-wrapper {
+	margin: 0;
+}
+
+.clickview {
+	margin-bottom: 50px;
+}
+
+.clickview + .std {
+	display: none;
+}
+
+.clickview figure {
+	text-align: center;
+}
+
+.clickview figure img {
+	margin: 0 auto;
+}
+
+/*By category*/
+
+.clickview.clickview_by_category .bx-wrapper{
+	margin: 14px auto;
+    vertical-align: top;
+}
+
+.clickview.clickview_by_category .form-control {
+	text-transform: uppercase;
+}

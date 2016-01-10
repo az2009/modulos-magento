@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * @category    Jefferson
+ * @package     Jefferson_Promocaotabs
+ * @author		Jefferson Batista Porto <jefferson.b.porto@gmail.com>
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ *
+ */
+-->
+
+<config>
+	
+	<modules>
+		<Jefferson_Promocaotabs>
+			<versioon>0.1.1</versioon>
+		</Jefferson_Promocaotabs>
+	</modules>
+	
+	<frontend>
+		
+		<layout>
+	        <updates>
+	            <Jefferson_Promocaotabs>
+	                <file>promocaofeaturedhome.xml</file>
+	            </Jefferson_Promocaotabs>
+	        </updates>
+    	</layout>
+		
+        <routers>
+            <promocaotabs>
+                <use>standard</use>
+                <args>
+                    <module>Jefferson_Promocaotabs</module>
+                    <frontName>promocaotabs</frontName>
+                </args>
+            </promocaotabs>
+        </routers>
+        
+        <translate>
+            <modules>
+                <Jefferson_Promocaotabs>
+                    <files>
+                        <default>Jefferson_Promocaotabs.csv</default>
+                    </files>
+                </Jefferson_Promocaotabs>
+            </modules>
+        </translate>
+        
+   </frontend>
+   
+   <global>
+   		
+   		<resources>
+	      <jefferson_promocaotabs_setup>
+		        <setup>
+		        	<module>Jefferson_Promocaotabs</module>
+		        </setup>
+		   </jefferson_promocaotabs_setup>
+		</resources>
+   			
+   		<blocks>
+			<promocaotabs>
+				<class>Jefferson_Promocaotabs_Block</class>
+			</promocaotabs>
+		</blocks>
+		
+		<helpers>
+			<promocaotabs>
+				<class>Jefferson_Promocaotabs_Helper</class>
+			</promocaotabs>
+		</helpers>
+		
+		<models>
+   			<promocaotabs>
+   				<class>Jefferson_Promocaotabs_Model</class>
+   			</promocaotabs>
+		</models>
+			
+   </global>
+   
+   <default>
+	   	<catalog>
+	   		<jefferson_promocaotabs>
+	   			<img_size>160</img_size>
+	   			<overview_perc>1</overview_perc>
+	   			<enable>1</enable>
+	   			<category_qty>8</category_qty>
+	   			<category_list>2</category_list>
+	   		</jefferson_promocaotabs>	
+	   	</catalog>
+   </default>
+   
+   <adminhtml>
+	   	<translate>
+	        <modules>
+	            <Jefferson_Promocaotabs>
+	                <files>
+	                    <default>Jefferson_Promocaotabs.csv</default>
+	                </files>
+	            </Jefferson_Promocaotabs>
+	        </modules>
+	    </translate>
+   </adminhtml>
+   
+</config>

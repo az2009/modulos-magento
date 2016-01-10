@@ -1,0 +1,79 @@
+<?php 
+/**
+ * 
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * @category    design
+ * @package     base_default
+ * @author		Jefferson Batista Porto <jefferson.b.porto@gmail.com>
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ *
+ */
+?>
+<?php 
+
+/**
+* Listagem dos produtos no slider
+* 
+* @see Jefferson_Promocao_Block_Promocao
+*/
+
+?>
+<div class="jefferson_promocao">
+<?php $_product = $this->getProducts(); ?>
+
+		<?php if($_product): ?>	
+			<ul class="bxslider">	
+					<?php foreach($_product as $item){ ?>
+					
+						<li>
+								<div class="container_img_bx">
+									 <a href="<?php echo $item->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($item, 'small_image'), null, true) ?>" 
+									 class="product-image">
+										<img src="<?php echo $this->helper('catalog/image')->init($item, 'small_image')->keepFrame(true)->resize($this->getImgSize(),$this->getImgSize()); ?>" />
+						             </a>
+							         
+							         <?php if($item->getSpecialPrice() > 0 ): ?>    
+							          
+							             <span class="perc">
+							             	<?php echo $this->getPerc($item->getPrice(), $item->getSpecialPrice() );  ?>
+							             </span>	
+							          
+							         <?php endif; ?>   
+						          </div>
+						          
+							      <div class="container_info_bx">
+							             <a href="<?php echo $item->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($item, 'small_image'), null, true) ?>"
+							             class="product-image">   
+							                	<?php echo $item->getName()."<br />"; ?>
+							             </a>	
+										
+										 <div class="std">
+									        <?php echo substr($this->helper('catalog/output')->productAttribute($this->getProduct(), $item->getShortDescription(), 'description'), 0, 150)."..."; ?>
+									     </div>
+										
+										 <?php echo $this->getPriceHtml($item, true) ?>
+										 
+										 <a href="<?php echo $item->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($item, 'small_image'), null, true) ?>" 
+										 class="product-cta">
+											<?php echo  $this->__($this->getLabelBtn()); ?>
+							              </a>		
+							        </div>      
+									
+							
+						</li>
+						
+					<?php	}  ?>
+			</ul>		
+		<?php endif; ?>	
+</div>		
+	
+

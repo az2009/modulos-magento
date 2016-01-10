@@ -1,0 +1,299 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * @category    Jefferson
+ * @package     Jefferson_Clickview
+ * @author		Jefferson Batista Porto <jefferson.b.porto@gmail.com>
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ *
+ */
+-->
+
+<config>
+	
+	<modules>
+		<Jefferson_Clickview>
+			<version>0.1.0</version>
+		</Jefferson_Clickview>
+	</modules>
+	
+	<frontend>
+		
+	 	<layout>
+	        <updates>
+	            <Jefferson_Clickview>
+	                <file>jefferson/jefferson_clickview.xml</file>
+	            </Jefferson_Clickview>
+	        </updates>
+  	   	</layout>
+		
+        <routers>
+            <clickview>
+                <use>standard</use>
+                <args>
+                    <module>Jefferson_Clickview</module>
+                    <frontName>clickview</frontName>
+                </args>
+            </clickview>
+        </routers>
+        
+	   	<translate>
+	        <modules>
+	            <Jefferson_Clickview>
+	                <files>
+	                    <default>jefferson_clickview.csv</default>
+	                </files>
+	            </Jefferson_Clickview>
+	        </modules>
+	    </translate>
+        
+        <events>
+   			<catalog_controller_product_view >
+   				<observers>
+					<jefferson_clickview_model_observer>
+						<type>singleton</type>
+						<class>Jefferson_Clickview_Model_Observer</class>
+						<method>setExecuteClickview</method>
+					</jefferson_clickview_model_observer>
+				</observers>
+   			</catalog_controller_product_view >
+   			
+   			<catalog_product_compare_add_product>
+   				<observers>
+					<jefferson_clickview_model_observer>
+						<type>singleton</type>
+						<class>Jefferson_Clickview_Model_Observer</class>
+						<method>setExecuteClickview</method>
+					</jefferson_clickview_model_observer>
+				</observers>
+   			</catalog_product_compare_add_product>
+   			
+  			<wishlist_add_product>
+	   			<observers>
+					<jefferson_clickview_model_observer>
+						<type>singleton</type>
+						<class>Jefferson_Clickview_Model_Observer</class>
+						<method>setExecuteClickview</method>
+					</jefferson_clickview_model_observer>
+				</observers>
+	   		</wishlist_add_product>
+	   		
+	   		<checkout_cart_product_add_after>
+	   			<observers>
+					<jefferson_clickview_model_observer>
+						<type>singleton</type>
+						<class>Jefferson_Clickview_Model_Observer</class>
+						<method>setExecuteClickview</method>
+					</jefferson_clickview_model_observer>
+				</observers>
+	   		</checkout_cart_product_add_after>
+ 
+   		</events>
+   		
+   </frontend>
+   
+   <global>
+   		
+  		<resources>
+		     <jefferson_clickview_setup>
+		        <setup>
+		        	<module>Jefferson_Clickview</module>
+		        </setup>
+		   </jefferson_clickview_setup>
+		</resources>
+   			
+   		<blocks>
+			<clickview>
+				<class>Jefferson_Clickview_Block</class>
+			</clickview>
+		</blocks>
+		
+		<helpers>
+			<clickview>
+				<class>Jefferson_Clickview_Helper</class>
+			</clickview>
+		</helpers>
+		
+		<models>
+   			<clickview>
+   				<class>Jefferson_Clickview_Model</class>
+   			</clickview>
+		</models>
+   </global>
+
+   <default>
+	   	<clickview_options>
+			<clickview_general>
+	   			<clickview_click_number_rows>16</clickview_click_number_rows>
+	   			<clickview_img_size>200</clickview_img_size>
+	   			<clickview_click_enabled>1</clickview_click_enabled>
+	   		</clickview_general>	
+		</clickview_options>   		
+		
+		<clickview_click_recents>
+			<clickview_click_recents_general>
+				<clickview_img_size>200</clickview_img_size>
+				<clickview_click_enabled>1</clickview_click_enabled>
+			</clickview_click_recents_general>
+		</clickview_click_recents>
+		
+		<clickview_best_seller>
+			<clickview_best_seller_general>
+				<clickview_click_number_rows>16</clickview_click_number_rows>
+				<clickview_img_size>200</clickview_img_size>
+				<clickview_click_enabled>1</clickview_click_enabled>
+			</clickview_best_seller_general>
+		</clickview_best_seller>
+		
+		<clickview_most_views>
+			<clickview_most_views_general>
+				<clickview_click_number_rows>16</clickview_click_number_rows>
+				<clickview_img_size>200</clickview_img_size>
+				<clickview_click_enabled>1</clickview_click_enabled>
+			</clickview_most_views_general>
+		</clickview_most_views>
+		
+		<clickview_product_discount>
+			<clickview_products_discount_general>
+				<clickview_click_number_rows>16</clickview_click_number_rows>
+				<clickview_img_size>200</clickview_img_size>
+				<clickview_click_enabled>1</clickview_click_enabled>
+			</clickview_products_discount_general>
+		</clickview_product_discount>
+		
+		<clickview_product_release>
+			<clickview_product_release_general>
+				<clickview_img_size>200</clickview_img_size>
+				<clickview_click_enabled>1</clickview_click_enabled>
+			</clickview_product_release_general>
+		</clickview_product_release>
+		
+		<clickview_by_category>
+			
+			<clickview_most_viewed_by_category>
+				<clickview_category_slidemargin>10</clickview_category_slidemargin>
+				<clickview_category_slidewidth>200</clickview_category_slidewidth>
+				<clickview_category_maxslider>1</clickview_category_maxslider>
+				<clickview_category_minslider>1</clickview_category_minslider>
+				<clickview_category_allowed></clickview_category_allowed>
+				<clickview_category_default></clickview_category_default>
+				<clickview_click_number_rows>16</clickview_click_number_rows>
+				<clickview_img_size>200</clickview_img_size>
+				<clickview_slide_mode>fade</clickview_slide_mode>
+				<clickview_click_enabled>1</clickview_click_enabled>
+			</clickview_most_viewed_by_category>
+			
+			<clickview_best_seller_by_category>
+				<clickview_category_slidemargin>10</clickview_category_slidemargin>
+				<clickview_category_slidewidth>200</clickview_category_slidewidth>
+				<clickview_category_maxslider>1</clickview_category_maxslider>
+				<clickview_category_minslider>1</clickview_category_minslider>
+				<clickview_category_allowed></clickview_category_allowed>
+				<clickview_category_default></clickview_category_default>
+				<clickview_click_number_rows>16</clickview_click_number_rows>
+				<clickview_img_size>200</clickview_img_size>
+				<clickview_slide_mode>fade</clickview_slide_mode>
+				<clickview_click_enabled>1</clickview_click_enabled>
+			</clickview_best_seller_by_category>
+			
+			<clickview_news_products_by_category>
+				<clickview_category_slidemargin>10</clickview_category_slidemargin>
+				<clickview_category_slidewidth>200</clickview_category_slidewidth>
+				<clickview_category_maxslider>1</clickview_category_maxslider>
+				<clickview_category_minslider>1</clickview_category_minslider>
+				<clickview_category_allowed></clickview_category_allowed>
+				<clickview_category_default></clickview_category_default>
+				<clickview_click_number_rows>16</clickview_click_number_rows>
+				<clickview_img_size>200</clickview_img_size>
+				<clickview_slide_mode>fade</clickview_slide_mode>
+				<clickview_click_enabled>1</clickview_click_enabled>
+			</clickview_news_products_by_category>
+			
+			<clickview_products_promotion_by_category>
+				<clickview_category_slidemargin>10</clickview_category_slidemargin>
+				<clickview_category_slidewidth>200</clickview_category_slidewidth>
+				<clickview_category_maxslider>1</clickview_category_maxslider>
+				<clickview_category_minslider>1</clickview_category_minslider>
+				<clickview_category_allowed></clickview_category_allowed>
+				<clickview_category_default></clickview_category_default>
+				<clickview_click_number_rows>16</clickview_click_number_rows>
+				<clickview_img_size>200</clickview_img_size>
+				<clickview_slide_mode>fade</clickview_slide_mode>
+				<clickview_click_enabled>1</clickview_click_enabled>
+			</clickview_products_promotion_by_category>
+			
+		</clickview_by_category>
+		
+	</default>
+
+
+   <adminhtml>
+	   	<translate>
+	        <modules>
+	            <Jefferson_Clickview>
+	                <files>
+	                    <default>jefferson_clickview.csv</default>
+	                </files>
+	            </Jefferson_Clickview>
+	        </modules>
+	    </translate>
+	    
+	    <acl>
+	    	<resources>
+	    		<admin>
+	    			<children>
+	    				<system>
+	    					<children>
+	    						<config>
+	    							<children>
+	    								
+	    								<clickview_options>
+	    									<title>Last click</title>
+	    								</clickview_options>
+	    								
+	    								<clickview_click_recents>
+	    									<title>Click recents</title>
+	    								</clickview_click_recents>
+	    								
+	    								<clickview_best_seller>
+	    									<title>Best Seller</title>
+	    								</clickview_best_seller>
+	    								
+	    								<clickview_most_views>
+	    									<title>Most Viewed</title>
+	    								</clickview_most_views>
+	    								
+	    								<clickview_by_category>
+	    									<title>Filter by category</title>
+	    								</clickview_by_category>
+	    								
+	    								<clickview_product_discount>
+	    									<title>Products discount</title>
+	    								</clickview_product_discount>
+	    								
+	    								<clickview_product_release>
+	    									<title>Products release</title>
+	    								</clickview_product_release>
+
+	    							</children>
+	    						</config>
+	    					</children>
+	    				</system>
+	    			</children>
+	    		</admin>
+	    	</resources>
+	    </acl>
+	    
+   </adminhtml>
+   
+</config>

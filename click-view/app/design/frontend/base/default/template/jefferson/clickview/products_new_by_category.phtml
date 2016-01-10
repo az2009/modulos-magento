@@ -1,0 +1,77 @@
+<script type="text/javascript">
+	
+	$clickview(document).ready(function(){
+		
+		var sliderNews = $clickview('.bxslider_clickview_new_product_by_category').bxSlider({
+		  
+		  mode: '<?php echo $this->getNewProductByCatMode() ?>',
+		  minSlides: <?php echo $this->getMinSlides() ?>,
+		  maxSlides: <?php echo $this->getMaxSlides() ?>,
+		  slideWidth: <?php echo $this->getSlideWidth() ?>,
+		  slideMargin: <?php echo $this->getSlideMargin() ?>
+		    
+		});
+		
+		var formDataNews = {
+		    			cat : '<?php echo $this->getCatDefault() ?>',
+		    		};
+		
+		$clickview.ajax({	
+				
+			url: "<?php echo $this->getUrlControllerNewsProductsByCategory() ?>",
+			type: "POST",
+		    dataType: 'json',
+		    cache : false,
+		    data: formDataNews,
+		    beforeSend: function(){
+		    	$clickview('.bxslider_clickview_new_product_by_category').append('<li><img src="<?php echo Mage::getBaseUrl() ?>/skin/frontend/base/default/jefferson/Clickview/image/loading.gif" /></li>');
+		    },
+		    success : function(data2){
+		    	$clickview('.bxslider_clickview_new_product_by_category').empty();
+		    	$clickview('.bxslider_clickview_new_product_by_category').append(data2.content);
+		    	sliderNews.reloadSlider();
+		    },
+		    
+		});
+		
+		$clickview('.category_clickview_new_product').change(function(){
+			
+			var formDataNews = {
+		    			cat : $clickview('.category_clickview_new_product').val(),
+		    		};
+			
+			$clickview.ajax({	
+				
+				url: "<?php echo $this->getUrlControllerNewsProductsByCategory() ?>",
+				type: "POST",
+			    dataType: 'json',
+			    cache : false,
+			    data: formDataNews,
+			    beforeSend: function(){
+			    	$clickview('.bxslider_clickview_new_product_by_category').append('<li><img src="<?php echo Mage::getBaseUrl() ?>/skin/frontend/base/default/jefferson/Clickview/image/loading.gif" /></li>');
+			    },
+			    success : function(data2){
+			    	$clickview('.bxslider_clickview_new_product_by_category').empty();
+			    	$clickview('.bxslider_clickview_new_product_by_category').append(data2.content);
+			    	sliderNews.reloadSlider();
+			    },
+			    
+			});
+			
+			
+			
+		});	
+	});
+	
+</script>
+
+
+<div class="col-md-3">
+	<div class="info">
+		<h2 class="subtitle"><?php echo $this->__('News') ?></h2>
+		<select name="category_clickview_new_product" class="category_clickview_new_product form-control">
+			<?php  echo $this->getCategoryNewProduct(); ?>
+		</select>
+		<ul class="bxslider_clickview_new_product_by_category"></ul>
+	</div>
+</div>

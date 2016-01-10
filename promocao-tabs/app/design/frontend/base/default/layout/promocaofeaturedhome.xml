@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+
+<!--
+/**
+ * 
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * @category    design
+ * @package     base_default
+ * @author		Jefferson Batista Porto <jefferson.b.porto@gmail.com>
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ *
+ */	
+-->
+
+<layout version="0.1.0">	
+	
+	
+	<default>
+		
+		<reference name="head">
+			
+			<action method="addItem"><type>skin_css</type><name>jefferson/Promocaotabs/css/style.css</name></action>
+			
+			<action method="addItem"><type>skin_js</type><name>jefferson/Promocaotabs/js/jquery.js</name></action>
+			
+			<action method="addItem"><type>skin_js</type><name>jefferson/Promocaotabs/js/script.js</name></action>
+			
+			<action method="addLinkRel"><rel>stylesheet</rel><href>//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css</href></action>
+			
+			<block type="core/text" name="bootstrap.cdn">
+				<action method="setText">
+					<text><![CDATA[<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>]]></text>
+				</action>
+				
+			</block>
+			
+		</reference>
+		
+	</default>
+	
+	<cms_index_index>
+		<reference name="content">
+			<block type="promocaotabs/promocaotabs" name="promocaotabshome" before="">
+				<action method="setTemplate" ifconfig="catalog/jefferson_promocaotabs/enable">
+					<template>promocaotabs/promocaotabshome.phtml</template>
+				</action>
+			</block>
+		</reference>
+	</cms_index_index>
+	
+	
+
+</layout>

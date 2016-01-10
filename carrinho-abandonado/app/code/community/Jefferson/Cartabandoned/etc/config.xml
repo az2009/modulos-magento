@@ -1,0 +1,223 @@
+<?xml version="1.0" ?>
+
+<config>
+
+	<modules>
+		<Jefferson_Cartabandoned>
+			<version>1.0.0</version>
+		</Jefferson_Cartabandoned>
+	</modules>
+
+	<frontend>
+	 	<layout>
+	        <updates>
+	            <Jefferson_Cartabandoned>
+	                <file>jefferson/cartabandoned/jefferson_cartabandoned.xml</file>
+	            </Jefferson_Cartabandoned>
+	        </updates>
+  	   	</layout>
+
+        <routers>
+            <cartabandonedj>
+                <use>standard</use>
+                <args>
+                    <module>Jefferson_Cartabandoned</module>
+                    <frontName>cartabandonedj</frontName>
+                </args>
+            </cartabandonedj>
+        </routers>
+
+        <translate>
+	        <modules>
+	            <Jefferson_Cartabandoned>
+	                <files>
+	                    <default>jefferson/cartabandoned/jefferson_cartabandoned.csv</default>
+	                </files>
+	            </Jefferson_Cartabandoned>
+	        </modules>
+	    </translate>
+
+   </frontend>
+
+   <adminhtml>
+
+   		<menu>
+
+   			<report>
+	            <children>
+	                <cartabandoned_reports translate="title" module="cartabandoned">
+	                    <title>Report abandoned shopping cart shipping</title>
+	                    <sort_order>800</sort_order>
+	                    <action>cartabandonedj/adminhtml_abandonedreport</action>
+	                </cartabandoned_reports>
+	            </children>
+	        </report>
+
+	        <newsletter>
+	            <children>
+	                <cartabandoned translate="title" module="cartabandoned">
+                        <title>Abandoned Cart</title>
+                        <sort_order>810</sort_order>
+                        <action>cartabandonedj/adminhtml_abandoned</action>
+	                </cartabandoned>
+	            </children>
+	        </newsletter>
+	    </menu>
+
+   		<acl>
+	    	<resources>
+	    		<admin>
+	    			<children>
+
+	    				<newsletter>
+	                        <children>
+	                            <cartabandoned translate="title" module="cartabandoned">
+	                                <title>Abandoned Cart</title>
+	                            </cartabandoned>
+	                        </children>
+	                    </newsletter>
+
+	                    <report>
+	                        <children>
+	                            <cartabandoned_reports translate="title" module="cartabandoned">
+	                                <title>Report abandoned shopping cart shipping</title>
+	                            </cartabandoned_reports>
+	                        </children>
+	                    </report>
+
+	    				<system>
+	    					<children>
+	    						<config>
+	    							<children>
+	    								<cartabandoned_options>
+	    									<title>Abandoned Cart</title>
+	    								</cartabandoned_options>
+	    							</children>
+	    						</config>
+	    					</children>
+	    				</system>
+
+	    			</children>
+	    		</admin>
+	    	</resources>
+	    </acl>
+
+	    <layout>
+			<updates>
+				<cartabandoned>
+					<file>jefferson/cartabandoned/jefferson_cartabandoned.xml</file>
+				</cartabandoned>
+			</updates>
+		</layout>
+
+		<translate>
+	        <modules>
+	            <Jefferson_Cartabandoned>
+	                <files>
+	                    <default>jefferson/cartabandoned/jefferson_cartabandoned.csv</default>
+	                </files>
+	            </Jefferson_Cartabandoned>
+	        </modules>
+	    </translate>
+
+   </adminhtml>
+
+   <admin>
+        <routers>
+			<cartabandonedj>
+				<use>admin</use>
+				<args>
+					<module>Jefferson_Cartabandoned</module>
+					<frontName>cartabandonedj</frontName>
+				</args>
+			</cartabandonedj>
+        </routers>
+    </admin>
+
+   <global>
+   		<template>
+            <email>
+                <cartabandoned_email_template translate="label">
+                    <label>Abandoned Cart</label>
+                    <file>jefferson/cartabandoned/cartabandoned.html</file>
+                    <type>html</type>
+                </cartabandoned_email_template>
+            </email>
+        </template>
+
+		<blocks>
+			<cartabandoned>
+				<class>Jefferson_Cartabandoned_Block</class>
+			</cartabandoned>
+		</blocks>
+
+		<helpers>
+			<cartabandoned>
+				<class>Jefferson_Cartabandoned_Helper</class>
+			</cartabandoned>
+		</helpers>
+
+		<models>
+
+   			<cartabandoned>
+   				<class>Jefferson_Cartabandoned_Model</class>
+   				<resourceModel>cartabandoned_mysql4</resourceModel>
+   			</cartabandoned>
+
+   			<cartabandoned_mysql4>
+   				<class>Jefferson_Cartabandoned_Model_Mysql4</class>
+   				<entities>
+   					<cartabandoned>
+   						<table>cart_abandonedj</table>
+   					</cartabandoned>
+
+   					<filaenvio>
+   						<table>cart_abandonedj_fila_envio</table>
+   					</filaenvio>
+
+   					<itemenvio>
+   						<table>cart_abandonedj_item_envio</table>
+   					</itemenvio>
+   				</entities>
+   			</cartabandoned_mysql4>
+
+		</models>
+
+		<resources>
+
+           <jefferson_cartabandoned_setup>
+	           	<setup>
+	           		<module>Jefferson_Cartabandoned</module>
+	           	</setup>
+	           	<connection>
+	                <use>core_setup</use>
+	            </connection>
+           </jefferson_cartabandoned_setup>
+
+
+           <jefferson_cartabandoned_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </jefferson_cartabandoned_write>
+
+            <jefferson_cartabandoned_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </jefferson_cartabandoned_read>
+
+        </resources>
+   </global>
+   <default>
+		<cartabandoned_options>
+			<cartabandoned_general>
+				<cartabandoned_enabled>1</cartabandoned_enabled>
+				<cartabandoned_time_envio>60</cartabandoned_time_envio>
+				<cartabandoned_time_interval_fila>72</cartabandoned_time_interval_fila>
+				<cartabandoned_subject_fila>Finalize your purchase</cartabandoned_subject_fila>
+			</cartabandoned_general>
+		</cartabandoned_options>
+	</default>
+
+</config>

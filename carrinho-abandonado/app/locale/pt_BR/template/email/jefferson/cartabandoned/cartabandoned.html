@@ -1,0 +1,106 @@
+<!--@subject {{var subject}}  @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"var logo_alt":"Email Logo Image Alt",
+@-->
+
+
+<div style="background: url('{{var linkOpen}}')">
+{{template config_path="design/email/header"}}
+{{inlinecss file="email-inline.css"}}
+<table width="800" align="center" cellpadding="0" cellspacing="0">
+<tr>
+	<td align="center" valign="top">
+		<table width="800" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td align="center" valign="top">
+			    	<a href="{{store url=''}}" target="_blank">
+			    		<img src="http://oi65.tinypic.com/8whwud.jpg" style="display:block" alt="{{var store.getFrontendName()}}" width="800" />
+			    	</a>
+			    </td>
+			</tr>
+		</table>
+	</td>
+</tr>
+</table>
+
+<table width="800" align="center" cellpadding="0" cellspacing="0">
+	<tr>
+	    <td width="66"></td>
+		<td width="426">
+	 		<font style="font-family:Arial; font-style:normal; font-size:20px; color:#4d853d; line-height:35px">
+	 			Hello how are you?
+	 		</font>
+	    </td>
+
+		<td align="right">
+	    	<img src="http://www.unius.com.br/img-emkt/quitandinha/03-11-2015/banner_2.jpg" style="disp	lay:block" alt="{{var store.getFrontendName()}}"/>
+	    </td>
+	</tr>
+</table>
+
+<table width="800" align="center" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="66"></td>
+		<td width="426">
+	   	 	<font style="font-family:Arial; font-style:normal; font-size:20px; color:#4d853d; line-height:35px">
+	    		Found in your cart the <br />products you chose, <br />We want to remind you that you still <br />You can complete your purchase!
+	    	</font>
+	    </td>
+		<td align="right">
+	     	<img src="http://i63.tinypic.com/swwu35.jpg" style="display:block" alt="{{var store.getFrontendName()}}"/>
+	    </td>
+	</tr>
+</table>
+
+
+<table width="670" align="center" cellpadding="0" cellspacing="0" style="margin:0 auto;">{{var html}}</table>
+
+
+<table width="800" align="center" cellpadding="0" cellspacing="0">
+	<tr>
+		<td height="20" align="center"></td>
+	</tr>
+</table>
+
+<table width="800" align="center" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="center">
+	   	  <a href="{{var link}}" target="_blank">
+		   	  	<font style="font-family:Arial; font-style:normal; font-size:20px; color:#4d853d; line-height:35px">
+		   	  		BUY
+		   	  	</font>
+	   	  	</a>
+	    </td>
+	</tr>
+</table>
+
+<table width="800" align="center" cellpadding="0" cellspacing="0">
+	<tr>
+		<td height="20" align="center"></td>
+	</tr>
+</table>
+
+<table width="800" align="center" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="66"></td>
+		<td width="800" height="35" align="left">
+	    	<font style="font-family:Arial; font-style:normal; font-size:20px; color:#4d853d; line-height:35px">
+	  		<p>After all, you made the right choice by selecting products that will bring many benefits to your life.</p>
+	   		<p>If you still have any questions about your purchases, please contact us and tell us what happened!</p>
+	  		 <p>We are waiting for your confirmation to deliver fresh and healthy products in your home.</p>
+	    	</font>
+	    </td>
+	    <td width="52"></td>
+	</tr>
+</table>
+
+<table width="800" align="center" cellpadding="0" cellspacing="0">
+	<tr>
+		<td height="20" align="center"></td>
+	</tr>
+</table>
+{{template config_path="design/email/footer"}}
+</div>
+

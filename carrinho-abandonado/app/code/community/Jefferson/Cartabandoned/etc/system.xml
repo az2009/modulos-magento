@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+		<cartabandoned translate="label" module="cartabandoned">
+			<label>Abandoned Cart</label>
+			<sort_order>99999</sort_order>
+		</cartabandoned>
+	</tabs>
+	<!--Click view click-->
+	<sections>
+		<cartabandoned_options translate="label" module="cartabandoned">
+			<label>Abandoned cart email marketing</label>
+			<tab>cartabandoned</tab>
+			<frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+
+            	<groups translate="label">
+
+            		<cartabandoned_general>
+            			<label>General</label>
+            			<frontend_type>text</frontend_type>
+	                    <sort_order>1</sort_order>
+	                    <show_in_default>1</show_in_default>
+	                    <show_in_website>1</show_in_website>
+	                    <show_in_store>1</show_in_store>
+
+	                    	<fields>
+
+	                    		<cartabandoned_enabled translate="label">
+	                    			<label>Enabled</label>
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>adminhtml/system_config_source_yesno</source_model>
+							        <sort_order>10</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>
+							    </cartabandoned_enabled>
+
+								<cartabandoned_time_envio>
+	                    			<label>Trigger speed</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>20</sort_order>
+							        <validate>required-entry</validate>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>
+							        <comment>Time in seconds between a clock sending and other (In seconds)</comment>
+							    </cartabandoned_time_envio>
+
+								<cartabandoned_time_interval_fila>
+	                    			<label>The queue run interval</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>30</sort_order>
+							        <validate>required-entry</validate>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>
+							        <comment>Run time in queue hours</comment>
+							    </cartabandoned_time_interval_fila>
+
+							    <cartabandoned_subject_fila>
+	                    			<label>Subject of e-mail</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>30</sort_order>
+							        <validate>required-entry</validate>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>
+							        <comment>Enter the e-mail subject</comment>
+							    </cartabandoned_subject_fila>
+
+							    <!-- <cartabandoned_discount_enabled translate="label">
+	                    			<label>Enabled Discount</label>
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>adminhtml/system_config_source_yesno</source_model>
+							        <sort_order>40</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>
+							    </cartabandoned_discount_enabled>
+
+	                    		<cartabandoned_info_coupon>
+	                    			<label>Discount Coupon</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>50</sort_order>
+							        <validate>required-entry</validate>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>
+							        <depends><cartabandoned_discount_enabled>1</cartabandoned_discount_enabled></depends>
+							        <comment>Enter the discount coupon created (the coupon will be created through the menu promotion)</comment>
+							    </cartabandoned_info_coupon>
+
+							    <cartabandoned_info_qty_coupon>
+	                    			<label>Discount amount</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>60</sort_order>
+							        <validate>required-entry</validate>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>
+							        <depends><cartabandoned_discount_enabled>1</cartabandoned_discount_enabled></depends>
+							        <comment>Discount amount (e.g. 10% or $10.00)</comment>
+							    </cartabandoned_info_qty_coupon>-->
+
+
+	                    	</fields>
+
+            		</cartabandoned_general>
+
+            	</groups>
+
+		</cartabandoned_options>
+	</sections>
+</config>

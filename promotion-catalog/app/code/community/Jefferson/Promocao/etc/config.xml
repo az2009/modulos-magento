@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * @category    Jefferson
+ * @package     Jefferson_Promocao
+ * @author		Jefferson Batista Porto <jefferson.b.porto@gmail.com>
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ *
+ */
+-->
+
+<config>
+	
+	<modules>
+		<Jefferson_Promocao>
+			<versioon>0.1.1</versioon>
+		</Jefferson_Promocao>
+	</modules>
+	
+	<frontend>
+		
+		<layout>
+	        <updates>
+	            <Jefferson_Promocao>
+	                <file>promocaofeaturedcategory.xml</file>
+	            </Jefferson_Promocao>
+	        </updates>
+    	</layout>
+		
+        <routers>
+            <promocao>
+                <use>standard</use>
+                <args>
+                    <module>Jefferson_Promocao</module>
+                    <frontName>promocao</frontName>
+                </args>
+            </promocao>
+        </routers>
+        
+        <translate>
+            <modules>
+                <Jefferson_Promocao>
+                    <files>
+                        <default>Jefferson_Promocao.csv</default>
+                    </files>
+                </Jefferson_Promocao>
+            </modules>
+        </translate>
+        
+   </frontend>
+   
+   <global>
+   		
+   		<resources>
+		      <jefferson_promocao_setup>
+			        <setup>
+			        	<module>Jefferson_Promocao</module>
+			        </setup>
+			   </jefferson_promocao_setup>
+		</resources>
+   			
+   		<blocks>
+			<promocao>
+				<class>Jefferson_Promocao_Block</class>
+			</promocao>
+		</blocks>
+		
+		<helpers>
+			<promocao>
+				<class>Jefferson_Promocao_Helper</class>
+			</promocao>
+		</helpers>
+		
+		<models>
+   			<promocao>
+   				<class>Jefferson_Promocao_Model</class>
+   			</promocao>
+		</models>
+			
+   </global>
+   
+   <default>
+	   	<catalog>
+	   		<jefferson_promocao>
+	   			<img_size>250</img_size>
+	   			<labe_btn>Click and check out!</labe_btn>
+	   			<enable>1</enable>
+	   		</jefferson_promocao>	
+	   	</catalog>
+   </default>
+   
+   <adminhtml>
+	   	<translate>
+	        <modules>
+	            <Jefferson_Promocao>
+	                <files>
+	                    <default>Jefferson_Promocao.csv</default>
+	                </files>
+	            </Jefferson_Promocao>
+	        </modules>
+	    </translate>
+   </adminhtml>
+   
+</config>

@@ -1,0 +1,76 @@
+@charset "utf-8";
+/* CSS Document */
+
+#jeffersonTabs {
+	background: #3399CC;
+}
+
+#jeffersonTabs a {
+	display: block !important;
+}
+
+#jeffersonTabs .tab-content {
+	margin: 20px 0;
+}
+
+#jeffersonTabs .tab-content ul {
+	float: left;
+	width: 100%;
+}
+
+#jeffersonTabs .tab-content ul li {
+	float: left;
+	margin: 5px;
+}
+
+#jeffersonTabs .nav-tabs>li>a {
+	border-radius: 0 !important;
+	border: none;
+	text-transform: uppercase;
+}
+
+#jeffersonTabs .nav-tabs li a {
+	color: #fff;	
+}
+
+#jeffersonTabs .nav-tabs li.active a {
+	color: #3399CC;
+}
+
+#jeffersonTabs .tab-pane .item {
+	height: 270px;
+  	background-color: #fff;
+  	border-right: 1px dotted #cfcfcf;
+  	vertical-align: top;
+  	text-align: center;
+  	overflow: hidden;
+}
+
+#jeffersonTabs .tab-pane .item img {
+	text-align: center;
+	margin: 0 auto;
+}
+
+#jeffersonTabs .tab-pane .item .product-image {
+	border: none;
+}
+
+
+#jeffersonTabs .perc {
+	color: #3399CC;
+	padding: 5px;
+	font-weight: bold;
+}
+
+
+.container-tabs-jefferson {
+	border: 4px solid #3399CC;
+	padding: 0 !important;
+}
+
+#jeffersonTabs .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+	border-left: none !important;
+	border-right: none !important;
+	border-top: none !important;
+	border-color: #fff !important;
+}

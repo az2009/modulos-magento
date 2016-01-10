@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout>
+    
+    <cartabandonedj_adminhtml_abandoned_index>
+        <reference name="content">
+            <block type="cartabandoned/adminhtml_abandoned" name="cartabandoned.abandoned"  />
+        </reference>
+    </cartabandonedj_adminhtml_abandoned_index>
+    
+    <cartabandonedj_adminhtml_abandonedreport_index>
+        <reference name="content">
+            <block type="cartabandoned/adminhtml_abandonedreport" name="cartabandoned.abandonedreport" />
+        </reference>
+    </cartabandonedj_adminhtml_abandonedreport_index>
+    
+</layout>

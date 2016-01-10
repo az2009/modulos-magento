@@ -1,0 +1,78 @@
+
+<script type="text/javascript">
+	
+	$clickview(document).ready(function(){
+		
+		var sliderPromotion = $clickview('.bxslider_clickview_products_promotion').bxSlider({
+		  
+		  mode: 	   '<?php echo $this->getNewProductByCatMode()?>',
+		  minSlides: 	<?php echo $this->getMinSlides() ?>,
+		  maxSlides: 	<?php echo $this->getMaxSlides() ?>,
+		  slideWidth: 	<?php echo $this->getSlideWidth() ?>,
+		  slideMargin:  <?php echo $this->getSlideMargin() ?>
+		    
+		});
+		
+		var formDataPromotion = {
+		    			cat : '<?php echo $this->getCatDefault() ?>',
+		    		};
+		
+		$clickview.ajax({	
+				
+			url: "<?php echo $this->getUrlControllerAllProductsPromotion() ?>",
+			type: "POST",
+		    dataType: 'json',
+		    cache : false,
+		    data: formDataPromotion,
+		    beforeSend: function(){
+		    		$clickview('.bxslider_clickview_products_promotion').append('<li><img src="<?php echo Mage::getBaseUrl() ?>/skin/frontend/base/default/jefferson/Clickview/image/loading.gif" /></li>');
+		    },
+		    success : function(data2){
+		    	$clickview('.bxslider_clickview_products_promotion').empty();
+		    	$clickview('.bxslider_clickview_products_promotion').append(data2.content);
+		    	sliderPromotion.reloadSlider();
+		    },
+		    
+		});
+		
+		$clickview('.category_clickview_products_promotion').change(function(){
+			
+			var formDataPromotion = {
+		    			cat : $clickview('.category_clickview_products_promotion').val(),
+		    		};
+			
+			$clickview.ajax({	
+				
+				url: "<?php echo $this->getUrlControllerAllProductsPromotion() ?>",
+				type: "POST",
+			    dataType: 'json',
+			    cache : false,
+			    data: formDataPromotion,
+			    beforeSend: function(){
+			    	$clickview('.bxslider_clickview_products_promotion').append('<li><img src="<?php echo Mage::getBaseUrl() ?>/skin/frontend/base/default/jefferson/Clickview/image/loading.gif" /></li>');
+			    },
+			    success : function(data2){
+			    	$clickview('.bxslider_clickview_products_promotion').empty();
+			    	$clickview('.bxslider_clickview_products_promotion').append(data2.content);
+			    	sliderPromotion.reloadSlider();
+			    },
+			    
+			});
+			
+			
+			
+		});	
+	});
+	
+</script>
+
+
+<div class="col-md-3">
+	<div class="info">
+		<h2 class="subtitle"><?php echo $this->__('Promotion') ?></h2>
+		<select name="category_clickview_products_promotion" class="category_clickview_products_promotion form-control">
+			<?php  echo $this->getCategoryProductPromotion(); ?>
+		</select>
+		<ul class="bxslider_clickview_products_promotion"></ul>
+	</div>
+</div>

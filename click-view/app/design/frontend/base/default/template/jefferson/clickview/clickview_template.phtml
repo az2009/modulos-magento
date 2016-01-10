@@ -1,0 +1,201 @@
+<?php 
+/**
+ * @category    design
+ * @package     base_default
+ * @author		Jefferson Batista Porto <jefferson.b.porto@gmail.com>
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ *
+ */
+?>
+<?php 
+/**
+ * Related products loop that was clicked
+ * @see Jefferson_Clickview_Block_Clickviewblock
+ * 
+ */
+?>
+<?php 
+
+	/**
+	 * Limits the query results
+	*/
+	$limit 				= $this->getClickCountRows();
+	
+	/**
+	 * Product image size
+	*/
+	$getImgSize 		= $this->getClickImgSize();
+	
+	/**
+	 * Get the id of the item that was clicked through the cookie
+	*/
+	$cookie 			= $this->getCookie();
+	
+	/**
+	 * Get the categrias of the product that was clicked
+	*/
+	$_categoryProducts 	= $this->getCategoryProducts($cookie);
+	
+	
+	/**
+	 * Get the products product category that was clicked
+	*/
+	$_products 			= $this->getDataProducts($cookie,$_categoryProducts,$limit);
+	
+	
+	
+?>
+<?php if(!empty($cookie)): ?>
+<div class="container clickview">
+	
+	<div class="row">
+		<div class="col-md-3">
+			<h2 class="subtitle">
+				<?php echo $this->__('You clicked...') ?>
+			</h2>
+		</div>
+		
+		<div class="col-md-9">
+			<h2 class="subtitle">
+				<?php echo $this->__('and we recommend for you...'); ?>
+			</h2>
+		</div>
+		
+	</div>
+	<div class="row">
+		
+		<div class="col-md-3">
+			<?php 
+				$item_current = $this->getDataProductCurrent($cookie);
+			?>
+			<figure>
+				
+				<a href="<?php echo $item_current->getProductUrl() ?>" 
+                	title="<?php echo $this->stripTags($this->getImageLabel($item_current, 'small_image'), null, true) ?>"  class="product-image">
+					<img src="<?php echo $this->helper('catalog/image')->init($item_current, 'small_image')->keepFrame(false)->resize($getImgSize,$getImgSize); ?>" />
+         		</a>
+				
+				<figcaption>
+					 
+					 <a href="<?php echo $item_current->getProductUrl() ?>" 
+		             	title="<?php echo $this->stripTags($this->getImageLabel($item_current, 'small_image'), null, true) ?>"
+		             	class="product-image">   
+		                	<?php echo $item_current->getName()."<br />"; ?>
+		             </a>	
+		             
+		             <?php echo $this->getPriceHtml($item_current, true) ?>
+		             
+		             <div class="product-secondary">
+					 														              	
+	                        <?php if(!$item_current->canConfigure() && $item_current->isSaleable()): ?>
+	                            
+	                            <p class="action">
+	                            	<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" 
+	                            	onclick="setLocation('<?php echo $this->getAddToCartUrl($item_current) ?>')">
+	                            		<span>
+	                            			<span>
+	                            				<?php echo $this->__('Add to Cart') ?>
+	                            			</span>
+	                            		</span>
+	                            	</button>
+	                            </p>
+	                            
+	                     <?php elseif($item_current->getStockItem() && $item_current->getStockItem()->getIsInStock() && $item_current->isSaleable()): ?>
+	                        
+	                            <p class="action">
+	                            	<a title="<?php echo $this->__('View Details') ?>" class="button"
+	                            	href="<?php echo $item_current->getProductUrl() ?>"><?php echo $this->__('View Details') ?>
+	                            	</a>
+	                            </p>
+	                            
+	                        <?php else: ?>
+	                        
+	                            <p class="action availability out-of-stock">
+	                            	<span><?php echo $this->__('Out of stock') ?></span>
+	                            </p>
+	                            
+	                        <?php endif; ?>
+	                        
+		             </div>
+		             
+				</figcaption>
+				
+			</figure>
+		</div>
+		
+		<div class="col-md-9">
+			<ul class="bxslider_clickview">
+				
+				<?php foreach($_products as $item){ ?>
+					
+					<li>
+						<figure>
+				
+							<a href="<?php echo $item->getProductUrl() ?>" 
+			                	title="<?php echo $this->stripTags($this->getImageLabel($item, 'small_image'), null, true) ?>"  class="product-image">
+								<img src="<?php echo $this->helper('catalog/image')->init($item, 'small_image')->keepFrame(true)->resize($getImgSize); ?>" />
+			         		</a>
+							
+							<figcaption>
+								 
+								 <a href="<?php echo $item->getProductUrl() ?>" 
+					             	title="<?php echo $this->stripTags($this->getImageLabel($item, 'small_image'), null, true) ?>"
+					             	class="product-image">   
+					                	<?php echo $item->getName()."<br />"; ?>
+					             </a>	
+					             
+					             <?php echo $this->getPriceHtml($item, true) ?>
+					             
+					             <div class="product-secondary">
+								 														              	
+				                        <?php if(!$item->canConfigure() && $item->isSaleable()): ?>
+				                            
+				                            <p class="action">
+				                            	<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" 
+				                            	onclick="setLocation('<?php echo $this->getAddToCartUrl($item) ?>')">
+				                            		<span>
+				                            			<span>
+				                            				<?php echo $this->__('Add to Cart') ?>
+				                            			</span>
+				                            		</span>
+				                            	</button>
+				                            </p>
+				                            
+				                        <?php elseif($item->getStockItem() && $item->getStockItem()->getIsInStock()): ?>
+				                        
+				                            <p class="action">
+				                            	<a title="<?php echo $this->__('View Details') ?>" class="button"
+				                            	href="<?php echo $item->getProductUrl() ?>"><?php echo $this->__('View Details') ?>
+				                            	</a>
+				                            </p>
+				                            
+				                        <?php else: ?>
+				                        
+				                            <p class="action availability out-of-stock">
+				                            	<span><?php echo $this->__('Out of stock') ?></span>
+				                            </p>
+				                            
+				                        <?php endif; ?>
+				                        
+					             </div>
+					             
+							</figcaption>
+							
+						</figure>
+					</li>
+					
+				<?php } ?>
+			</ul>
+		</div>
+		
+	</div>
+</div>
+<?php endif; ?>
+
+
+
+
+
+
+
+

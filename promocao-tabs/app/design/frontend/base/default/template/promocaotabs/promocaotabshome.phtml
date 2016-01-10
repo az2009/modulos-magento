@@ -1,0 +1,172 @@
+<?php 
+
+/**
+ * 
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * @category    design
+ * @package     base_default
+ * @author		Jefferson Batista Porto <jefferson.b.porto@gmail.com>
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ *
+ */
+ 
+
+/**
+ * Category view template
+ *
+ * @see Jefferson_Promocao_Block_Promocaotabs
+ * 
+ * 
+ */
+
+
+?>
+
+<?php
+	$getImgSize = $this->getImgSize();
+	$cat 		= $this->getCatsArray();
+	$qtyCat		= $this->getCategoryQty();
+?>
+<div class="container-fluid container-tabs-jefferson">
+	<div class="row-fluid">
+			
+			<div id="jeffersonTabs">
+				  <!-- Nav tabs -->
+				  <ul class="nav nav-tabs" role="tablist">
+				     
+				     <?php foreach($cat as $dat){ ?>
+				    	
+					    	<li role="presentation" >
+					    		<a href="#home<?php echo $dat; ?>" aria-controls="home<?php echo $dat; ?>" role="tab" data-toggle="tab">
+					    			<?php echo $this->getCategoryName($dat); ?>
+					    		</a>
+					    	</li>
+				    	
+				     <?php $rr[] = $dat; } ?>
+				    
+				  </ul>
+				
+				  <!-- Tab panes -->
+				  <div class="tab-content">
+				    
+				    <?php foreach($rr as $tt){  $_product = $this->getProducts($tt); ?>
+				    
+					    <div role="tabpanel" class="tab-pane" id="home<?php echo $tt; ?>">
+					    	
+						    	<div>
+						    	<?php  if($_product): ?>	
+						    		<?php $x=0;foreach($_product as $item){ ?>
+						    			
+						    			
+						    			<?php  if($x != $qtyCat): ?>
+	        		
+								            <div class="item col-md-3">
+								                
+								                <a href="<?php echo $item->getProductUrl() ?>" 
+								                	title="<?php echo $this->stripTags($this->getImageLabel($item, 'small_image'), null, true) ?>"  class="product-image">
+													<img src="<?php echo $this->helper('catalog/image')->init($item, 'small_image')->keepFrame(true)->resize($getImgSize,$getImgSize); ?>" />
+							             		</a>
+							             		
+								                <div class="container_info_bx">
+  										              <?php 
+										              	$today 					=  strtotime(date('Y-m-d'));
+												     	
+												        $specialPriceFromDate 	= $item->getSpecialFromDate();
+												        
+												        $specialPriceToDate 	= $item->getSpecialToDate();
+										              ?>
+											              
+											              <?php if($item->getSpecialPrice() > 0 ): 
+											              
+												        	if($today >= strtotime($specialPriceFromDate) && $today <= strtotime($specialPriceToDate)
+												            || $today >= strtotime( $specialPriceFromDate) && is_null($specialPriceToDate)):
+      
+											              ?>   
+											              
+								        				        <span class="perc">
+													            	<?php echo $this->getPerc($item->getPrice(), $item->getSpecialPrice() );  ?>
+													            </span>	
+													            
+													      <?php 
+													      		endif; 
+													      	endif; 
+													      ?>
+
+										             <a href="<?php echo $item->getProductUrl() ?>" 
+										             title="<?php echo $this->stripTags($this->getImageLabel($item, 'small_image'), null, true) ?>"
+										             class="product-image">   
+										                	<?php echo $item->getName()."<br />"; ?>
+										             </a>	
+													
+													 <?php echo $this->getPriceHtml($item, true) ?>
+													 
+													 <a href="<?php echo $item->getProductUrl() ?>" 
+													 title="<?php echo $this->stripTags($this->getImageLabel($item, 'small_image'), null, true) ?>" 
+													 class="product-cta">
+														<?php echo  $this->__($this->getLabelBtn()); ?>
+										              </a>		
+										              
+
+												      
+												      
+										              	
+													    <div class="product-secondary">
+																			              	
+									                        <?php if(!$item->canConfigure() && $item->isSaleable()): ?>
+									                            
+									                            <p class="action">
+									                            	<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" 
+									                            	onclick="setLocation('<?php echo $this->getAddToCartUrl($item) ?>')">
+									                            		<span>
+									                            			<span>
+									                            				<?php echo $this->__('Add to Cart') ?>
+									                            			</span>
+									                            		</span>
+									                            	</button>
+									                            </p>
+									                            
+									                        <?php elseif($item->getStockItem() && $item->getStockItem()->getIsInStock()): ?>
+									                        
+									                            <p class="action">
+									                            	<a title="<?php echo $this->__('View Details') ?>" class="button"
+									                            	href="<?php echo $item->getProductUrl() ?>"><?php echo $this->__('View Details') ?>
+									                            	</a>
+									                            </p>
+									                            
+									                        <?php else: ?>
+									                        
+									                            <p class="action availability out-of-stock">
+									                            	<span><?php echo $this->__('Out of stock') ?></span>
+									                            </p>
+									                            
+									                        <?php endif; ?>
+									                        
+										                </div>
+										              
+										        </div>      
+								            </div>
+	        									
+	        							<?php $x++; endif; ?>
+	        							
+							        <?php } ?>
+							     <?php  endif; ?>
+								</div>
+					    </div>
+					
+					<?php } ?>
+					
+				  </div>
+				
+			</div>
+		
+	</div>
+</div>

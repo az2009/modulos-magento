@@ -1,0 +1,75 @@
+<script type="text/javascript">
+	
+	$clickview(document).ready(function(){
+		
+		var slider1 = $clickview('.bxslider_clickview_best_seller_by_category').bxSlider({
+		  
+		  mode: 		'<?php echo $this->getBestSellerByCatMode() ?>',
+		  minSlides: 	<?php  echo $this->getMinSlides()   ?>,
+		  maxSlides: 	<?php  echo $this->getMaxSlides()   ?>,
+		  slideWidth: 	<?php  echo $this->getSlideWidth()  ?>,
+		  slideMargin: 	<?php  echo $this->getSlideMargin() ?>
+		    
+		});
+		
+		var formData1 = {
+		    			cat : '<?php echo $this->getCatDefault() ?>',
+		    		};
+		
+		$clickview.ajax({	
+				
+			url: "<?php echo $this->getUrlControllerBestSellerByCategory() ?>",
+			type: "POST",
+		    dataType: 'json',
+		    cache : false,
+		    data: formData1,
+		    beforeSend: function(){
+		    	$clickview('.bxslider_clickview_best_seller_by_category').append('<li><img src="<?php echo Mage::getBaseUrl() ?>/skin/frontend/base/default/jefferson/Clickview/image/loading.gif" /></li>');
+		    },
+		    success : function(data2){
+		    	$clickview('.bxslider_clickview_best_seller_by_category').empty();
+		    	$clickview('.bxslider_clickview_best_seller_by_category').append(data2.content);
+		    	slider1.reloadSlider();
+		    },
+		    
+		});
+		
+		$clickview('.category_clickview_best_seller').change(function(){
+			
+			var formData = {
+		    			cat : $clickview('.category_clickview_best_seller').val(),
+		    		};
+			
+			$clickview.ajax({	
+				
+				url: "<?php echo $this->getUrlControllerBestSellerByCategory() ?>",
+				type: "POST",
+			    dataType: 'json',
+			    cache : false,
+			    data: formData,
+			    beforeSend: function(){
+			    	$clickview('.bxslider_clickview_best_seller_by_category').append('<li><img src="<?php echo Mage::getBaseUrl() ?>/skin/frontend/base/default/jefferson/Clickview/image/loading.gif" /></li>')
+			    },
+			    success : function(data2){
+			    	$clickview('.bxslider_clickview_best_seller_by_category').empty();
+			    	$clickview('.bxslider_clickview_best_seller_by_category').append(data2.content);
+			    	slider1.reloadSlider();
+			    },
+			    
+			});
+			
+		});	
+	});
+	
+</script>
+
+
+<div class="col-md-3">
+	<div class="info">
+		<h2 class="subtitle"><?php echo $this->__('Top sellers') ?></h2>
+		<select name="category_clickview_best_seller" class="category_clickview_best_seller form-control">
+			<?php  echo $this->getCategoryBestSeller(); ?>
+		</select>
+		<ul class="bxslider_clickview_best_seller_by_category"></ul>
+	</div>
+</div>

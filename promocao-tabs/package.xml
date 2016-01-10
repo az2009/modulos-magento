@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+    <name>Jefferson_Promocaotabs</name>
+    <version>0.1.1</version>
+    <stability>stable</stability>
+    <license uri="http://opensource.org/licenses/OSL-3.0">Open Software License v. 3.0 (OSL-3.0)</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>This module allows it to be placed in tabs on the home products or elsewhere via static block</summary>
+    <description>This module allows it to be placed in tabs on the home products or elsewhere via static block, this module should be used to that you want to customize your store to improve the marketing of the store.</description>
+    <notes>Technologies used to build the module: php, jquery, html, css, Bootstrap, modules compatible with Magento version 1.7 onward</notes>
+    <authors><author><name>Jefferson Batista Porto</name><user>fdsa451</user><email>jefferson.b.porto@gmail.com</email></author></authors>
+    <date>2015-08-17</date>
+    <time>02:12:39</time>
+    <contents><target name="magecommunity"><dir name="Jefferson"><dir name="Promocaotabs"><dir name="Block"><file name="Promocaotabs.php" hash="9b8ddf139575bd5515f65373aa6b00ed"/></dir><dir name="Helper"><file name="Data.php" hash="4c1198d0c0ae7b8d408d8cfc2408e870"/></dir><dir name="Model"><file name="Promocaotabs.php" hash="e7b9e3e96c9da8d9ea341a1fcdfa51b7"/><dir name="System"><dir name="Config"><dir name="Source"><file name="Category.php" hash="d46efaac873c9b561cb3efff9d12630f"/></dir></dir></dir></dir><dir name="controllers"><file name="IndexController.php" hash="ddeea7de69079d069df607e1b3817d64"/></dir><dir name="etc"><file name="config.xml" hash="13940793d361b5729cc1a0e9ce6b407f"/><file name="system.xml" hash="c917037526a41755b672d961b69fabf6"/></dir><dir name="sql"><dir name="jefferson_promocaotabs_setup"><file name="install-0.1.0.php" hash="d7f17f2d43052ed91d1eb15ed66f7335"/><file name="upgrade-0.1.1.php" hash="f1dea537eea9d2d8639c7e513b3cc5f1"/></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Jefferson_Promocaotabs.xml" hash="280a6361902cbb632bad726e056706e1"/></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="promocaofeaturedhome.xml" hash="0c34afd3e05a0a6dbdc86e0a7468330a"/></dir><dir name="template"><dir name="promocaotabs"><file name="promocaotabshome.phtml" hash="c7226a3af1f876cee6581afcf59e3bc9"/></dir></dir></dir></dir></dir></target><target name="mageskin"><dir name="frontend"><dir name="base"><dir name="default"><dir name="jefferson"><dir name="Promocaotabs"><dir name="css"><file name="style.css" hash="ece0f9cc5fd7ea1d346eec4e9f6b026a"/></dir><dir name="js"><file name="jquery.js" hash="11468602df014a21b203dc9bcd84d369"/><file name="script.js" hash="2cf9e80cead684dea89276fd06281e41"/></dir></dir></dir></dir></dir></dir></target><target name="magelocale"><dir><dir name="pt_BR"><file name="Jefferson_Promocaotabs.csv" hash="cfb571e11d11af98bfe046ad16a1a6f8"/></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.2.0</min><max>6.0.0</max></php></required></dependencies>
+</package>

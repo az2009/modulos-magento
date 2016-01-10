@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" media="all" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+        
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+        
+        
+        
+        <script>
+            $(function(){
+                
+                //Gráfico
+                
+                    new Morris.Donut({
+                          element: 'filas',
+                          data: [
+                            {label: "<?php echo $this->__('Queue') ?>", value: <?php $this->getQtyCartBefore(); ?> },                                                    
+                          ]
+                        });              
+                    
+                    new Morris.Donut({
+                          element: 'disparados',
+                          data: [
+                            {label: "<?php echo $this->__('Raised') ?>", value: <?php $this->getCountEnvio(); ?> },                        
+                          ]
+                        });                
+                
+                    new Morris.Donut({
+                          element: 'cart',
+                          data: [
+                            {label: "<?php echo $this->__('Before') ?>", value: <?php $this->getQtyCartBefore(); ?> },
+                            {label: "<?php echo $this->__('After') ?>", value: <?php $this->getQtyCartAfter(); ?> },                        
+                          ]
+                        });
+                
+                    new Morris.Donut({
+                      element: 'enviadosAbertos',
+                      data: [
+                        {label: "<?php echo $this->__('Viewed') ?>", value: <?php $this->getCountOpen(); ?> },
+                        {label: "<?php echo $this->__('Not displayed') ?>", value: <?php $this->getCountNotOpen(); ?> },                        
+                      ]
+                    });
+                    
+                    new Morris.Donut({
+                      element: 'clicadosAbertos',
+                      data: [
+                        {label: "<?php echo $this->__('Clicked') ?>", value: <?php $this->getCountClick(); ?> },
+                        {label: "<?php echo $this->__('Not clicked') ?>", value: <?php $this->getCountNotClick(); ?> },
+                        
+                      ]
+                    });
+                    
+                    new Morris.Bar({
+                              // ID of the element in which to draw the chart.
+                                element: 'myfirstchart',
+                                
+                              // Chart data records -- each entry in this array corresponds to a point on
+                              // the chart.
+                                  data: [
+                                    { Dados: '<?php echo $this->__('Queue') ?>',         value: <?php $this->getQtyCartBefore(); ?> },
+                                    { Dados: '<?php echo $this->__('Fired') ?>',         value: <?php $this->getCountEnvio(); ?> },
+                                    { Dados: '<?php echo $this->__('Viewed') ?>',        value: <?php $this->getCountOpen(); ?> },
+                                    { Dados: '<?php echo $this->__('Clicked') ?>',       value: <?php $this->getCountClick(); ?> },
+                                    { Dados: '<?php echo $this->__('Not clicked') ?>',   value: <?php $this->getCountNotClick(); ?> },
+                                    { Dados: '<?php echo $this->__('Not displayed') ?>', value: <?php $this->getCountNotOpen(); ?> },
+                                    
+                                  ],
+                                  
+                              // The name of the data record attribute that contains x-values.
+                                xkey: 'Dados',
+                                
+                              // A list of names of data record attributes that contain y-values.
+                                ykeys: ['value'],
+                                
+                              // Labels for the ykeys -- will be displayed when you hover over the
+                              // chart.
+                                labels: ['Qty']
+                        });     
+                
+                //Data Table
+                    var table = $('#table').DataTable({"order": []});
+                        
+                    new $.fn.dataTable.AutoFill(table);
+               
+                
+            });    
+        </script>
+    </head>
+    <body>
+        
+        <div class="container-fluid">
+            
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><?php echo $this->__('General Report') ?></h3>
+                        </div>
+                    
+                        <div class="panel-body" style="margin: 0 auto; max-width: 600px;">                        
+                          <div id="myfirstchart" style="height: 250px;"></div>
+                        </div>        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><?php echo $this->__('Queue') ?></h3>
+                        </div>                        
+                        <div class="panel-body">
+                            <div id="filas" class="enviadosAbertos" style="height: 250px"></div>
+                        </div>                        
+                    </div> 
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><?php echo $this->__('Fired') ?></h3>
+                        </div>                        
+                        <div class="panel-body">
+                            <div id="disparados" class="enviadosAbertos" style="height: 250px"></div>
+                        </div>                        
+                    </div> 
+                </div>                    
+            </div>
+            
+            <div class="row">                
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><?php echo $this->__('Viewed') ?></h3>
+                        </div>                        
+                        <div class="panel-body">
+                            <div id="enviadosAbertos" class="enviadosAbertos" style="height: 250px"></div>
+                        </div>                        
+                    </div>         
+                </div>
+                
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><?php echo $this->__('Clicked') ?></h3>
+                        </div>                        
+                        <div class="panel-body">
+                            <div id="clicadosAbertos" class="clicadosAbertos" style="height: 250px"></div>
+                        </div>                        
+                    </div>         
+                </div>      
+                
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><?php echo $this->__('Amount of abandoned carts') ?></h3>
+                        </div>                        
+                        <div class="panel-body">
+                            <div id="cart" class="cart" style="height: 250px"></div>
+                        </div>                        
+                    </div>         
+                </div>                
+            </div>    
+        
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><?php echo $this->__('List of shots') ?></h3>
+                        </div>
+                    
+                    
+                        <div class="panel-body">
+                            <table id="table" style="width: 100% !important">                        
+                                <thead>
+                                    <tr>
+                                        <td><?php echo $this->__('ID') ?></td>
+                                        <td><?php echo $this->__('E-mail') ?></td>
+                                        <td><?php echo $this->__('Date') ?></td>
+                                        <td><?php echo $this->__('Clicked?') ?></td>
+                                        <td><?php echo $this->__('Viewed?') ?></td>
+                                    </tr>
+                                </thead>   
+                                
+                                <tbody><?php echo $this->listItemsEnvio(); ?></tbody>              
+                            </table>
+                       </div>
+                    </div>
+                </div>             
+            </div>
+            
+        </div>
+        
+        
+    </body>
+</html>

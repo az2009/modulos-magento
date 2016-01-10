@@ -1,0 +1,41 @@
+<div class="container clickview clickview_by_category">
+	<div class="container">
+		<div class="row">
+			<?php 
+				//The most-viewed products by category
+					$obj1 = $this->getLayout()->createBlock('clickview/clickviewmostviewedbycategoryblock');
+					if($obj1->getMostViewedByCatEnabled() == 1):
+						echo $obj1->setTemplate('jefferson/clickview/mostviewedbycategory.phtml')->toHtml(); 
+					endif;	
+			?>
+				
+			<?php 
+			
+				//Top-selling products by category
+					$obj2 = $this->getLayout()->createBlock('clickview/clickviewbestsellerbycategoryblock');
+					if($obj2->getBestSellerByCatEnabled() == 1):
+						echo $obj2->setTemplate('jefferson/clickview/bestsellerbycategory.phtml')->toHtml(); 
+					endif;
+			?>
+			
+			<?php 
+				
+				//New products by category
+					$obj3 = $this->getLayout()->createBlock('clickview/clickviewnewsproductsblock');
+					if($obj3->getNewProductByCatEnabled() == 1):
+						echo $obj3->setTemplate('jefferson/clickview/products_new_by_category.phtml')->toHtml(); 
+					endif;
+			?>
+			
+			<?php 
+				
+				//Products on promotion by category
+					$obj4 = $this->getLayout()->createBlock('clickview/clickviewproductspromotionblock');
+					if($obj4->getNewProductByCatEnabled() == 1):
+						echo $obj4->setTemplate('jefferson/clickview/products_all_promotion.phtml')->toHtml();
+					endif;
+			?>
+		</div>
+		
+	</div>
+</div>

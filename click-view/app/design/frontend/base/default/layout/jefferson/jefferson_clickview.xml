@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+
+<!--
+/**
+ * 
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * @category    design
+ * @package     base_default
+ * @author		Jefferson Batista Porto <jefferson.b.porto@gmail.com>
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ *
+ */	
+-->
+
+<layout version="0.1.0">	
+	
+	
+	<default>
+		
+		<reference name="head">
+			
+			<action method="addItem"><type>skin_css</type><name>jefferson/Clickview/css/bxslider.css</name></action>
+			
+			<action method="addItem"><type>skin_css</type><name>jefferson/Clickview/css/style.css</name></action>
+			
+			<action method="addLinkRel"><rel>stylesheet</rel><href>//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css</href></action>
+			
+			<action method="addItem"><type>skin_js</type><name>jefferson/Clickview/js/jquery.js</name></action>
+			
+			<action method="addItem"><type>skin_js</type><name>jefferson/Clickview/js/bxslider.js</name></action>
+			
+			<action method="addItem"><type>skin_js</type><name>jefferson/Clickview/js/script.js</name></action>
+			
+			<block type="core/text" name="bootstrap.cdn">
+				<action method="setText">
+					<text><![CDATA[<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>]]></text>
+				</action>
+				
+			</block>
+			
+		</reference>
+		
+		
+	</default>
+	
+	<cms_index_index>
+		<reference name="content">
+			<remove name="home.reports.product.viewed" />
+			<remove name="home.reports.product.compared" />
+			<remove name="home.catalog.product.new" />
+			
+			<!--Jefferson_Clickview_Block_Clickviewblock-->	
+				<block type="clickview/clickviewblock" name="clickview" before="">
+					<action method="setTemplate" ifconfig="clickview_options/clickview_general/clickview_click_enabled">
+						<template>jefferson/clickview/clickview_template.phtml</template>
+					</action>
+				</block>
+			
+			<!--Jefferson_Clickview_Block_Clickviewrecents-->
+		        <block type="clickview/Clickviewrecents" name="product.viewed.recents" alias="product_viewed_recents" after="product_new">
+		            <action method="addPriceBlockType">
+		                <type>bundle</type>
+		                <block>bundle/catalog_product_price</block>
+		                <template>bundle/catalog/product/price.phtml</template>
+		            </action>
+		            
+		            <action method="setTemplate" ifconfig="clickview_click_recents/clickview_click_recents_general/clickview_click_enabled">
+		            	<template>jefferson/clickview/recents.phtml</template>
+		            </action>
+		        </block>
+			
+			<!--Produtos mais vendidos-->
+				<block type="clickview/clickviewbestsellersblock" name="clickview.bestseller">
+					<action method="setTemplate" ifconfig="clickview_best_seller/clickview_best_seller_general/clickview_click_enabled">
+						<template>jefferson/clickview/bestseller.phtml</template>
+					</action>
+				</block>
+			
+			<!--Produtos mais visualizados-->	
+				<block type="clickview/clickviewmostviewedblock" name="clickview.mostviewed">
+					<action method="setTemplate" ifconfig="clickview_most_views/clickview_most_views_general/clickview_click_enabled">
+						<template>jefferson/clickview/mostviewed.phtml</template>
+					</action>
+				</block>
+			
+			<!--Produtos filtrados por categorias-->
+				<block type="core/template" name="union" template="jefferson/clickview/union.phtml" />
+			
+			
+			<!--Baixaram de preço-->
+				<block type = "clickview/clickviewnewsproductsblock" name = "productsPromotion">
+					<action method="setTemplate" ifconfig="clickview_product_discount/clickview_products_discount_general/clickview_click_enabled">
+						<template>jefferson/clickview/products_discount.phtml</template>
+					</action>
+				</block>
+			
+			<!--Novos produtos-->				
+				<block type="catalog/product_new" name="productNew">
+					<action method="setTemplate" ifconfig="clickview_product_release/clickview_product_release_general/clickview_click_enabled">
+						<template>jefferson/clickview/newsproducts.phtml</template>
+					</action>
+				</block>
+			
+				
+				
+		</reference>
+	</cms_index_index>
+	
+	
+
+</layout>
