@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Jbp_Ouibounce>
+			<version>0.1.0</version>
+		</Jbp_Ouibounce>
+	</modules>
+
+	<frontend>
+
+		<layout>
+			<updates>
+				<jbp_ouibounce>
+					<file>jbp/jbp_ouibounce.xml</file>
+				</jbp_ouibounce>
+			</updates>
+		</layout>
+
+		<routers>
+			<jbp_ouibounce>
+				<use>standard</use>
+				<args>
+					<module>Jbp_Ouibounce</module>
+					<frontName>ouibounce</frontName>
+				</args>
+			</jbp_ouibounce>
+		</routers>
+
+	</frontend>
+
+	<adminhtml>
+        <layout>
+            <updates>
+                <jbp_ouibounce>
+                    <file>jbp/adminhtml/jbp_ouibounce.xml</file>
+                </jbp_ouibounce>
+            </updates>
+        </layout>
+
+        <menu>
+   			<report>
+	            <children>
+	                <ouibounce_reports translate="title" module="jbp_ouibounce">
+	                    <title>Report Ouibounce</title>
+	                    <sort_order>800</sort_order>
+	                    <action>adminhtml/ouibounce/index/</action>
+	                </ouibounce_reports>
+	            </children>
+	        </report>
+	    </menu>
+
+   		<acl>
+	    	<resources>
+	    		<admin>
+	    			<children>
+	    				<system>
+	    					<children>
+	    						<config>
+	    							<children>
+	    								<ouibounce_config>
+	    									<title>Ouibounce</title>
+	    								</ouibounce_config>
+	    							</children>
+	    						</config>
+	    					</children>
+	    				</system>
+	                    <report>
+	                        <children>
+	                            <ouibounce_reports translate="title" module="jbp_ouibounce">
+	                                <title>Report Ouibounce</title>
+	                            </ouibounce_reports>
+	                        </children>
+	                    </report>
+	    			</children>
+	    		</admin>
+	    	</resources>
+	    </acl>
+
+	</adminhtml>
+
+	<admin>
+	   <routers>
+           <adminhtml>
+               <args>
+                   <modules>
+                       <jbp_ouibounce after="Mage_Adminhtml">Jbp_Ouibounce_Adminhtml</jbp_ouibounce>
+                   </modules>
+               </args>
+           </adminhtml>
+       </routers>
+	</admin>
+
+	<global>
+
+		<template>
+            <email>
+                <ouibounce_email_template translate="label">
+                    <label>Ouibounce report</label>
+                    <file>jbp/ouibounce/tpl.html</file>
+                    <type>html</type>
+                </ouibounce_email_template>
+            </email>
+        </template>
+
+		<blocks>
+			<jbp_ouibounce>
+				<class>Jbp_Ouibounce_Block</class>
+			</jbp_ouibounce>
+		</blocks>
+
+		<helpers>
+			<jbp_ouibounce>
+				<class>Jbp_Ouibounce_Helper</class>
+			</jbp_ouibounce>
+		</helpers>
+
+		<models>
+			<jbp_ouibounce>
+				<class>Jbp_Ouibounce_Model</class>
+				<resourceModel>ouibounce_mysql4</resourceModel>
+			</jbp_ouibounce>
+
+			<ouibounce_mysql4>
+				<class>Jbp_Ouibounce_Model_Mysql4</class>
+				<entities>
+					<ouibounce>
+						<table>ouibounce_report</table>
+					</ouibounce>
+				</entities>
+			</ouibounce_mysql4>
+		</models>
+
+		<resources>
+
+           <jbp_ouibounce_setup>
+
+	           	<setup>
+	           		<module>Jbp_Ouibounce</module>
+	           	</setup>
+
+	           	<connection>
+	                <use>core_setup</use>
+	            </connection>
+
+           </jbp_ouibounce_setup>
+
+           <jbp_ouibounce_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </jbp_ouibounce_write>
+
+            <jbp_ouibounce_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </jbp_ouibounce_read>
+
+        </resources>
+
+	</global>
+	
+	<default>
+		<ouibounce_config>
+			<ouibounce_general>
+				<ouibounce_enabled>1</ouibounce_enabled>
+			</ouibounce_general>
+		</ouibounce_config>
+	</default>
+</config>
+
+
+
+
+
+

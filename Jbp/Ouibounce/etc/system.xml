@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+		<ouibounce translate="label" module="jbp_ouibounce">
+			<label>Ouibounce</label>
+			<sort_order>99999</sort_order>
+		</ouibounce>
+	</tabs>
+	<sections>
+		<ouibounce_config translate="label" module="jbp_ouibounce">
+			<label>Ouibounce</label>
+			<tab>ouibounce</tab>
+			<frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+
+            	<groups translate="label">
+
+            		<ouibounce_general>
+            			<label>General</label>
+            			<frontend_type>text</frontend_type>
+	                    <sort_order>1</sort_order>
+	                    <show_in_default>1</show_in_default>
+	                    <show_in_website>1</show_in_website>
+	                    <show_in_store>1</show_in_store>
+
+	                    	<fields>
+
+								<ouibounce_qty_discount translate="label">
+	                    			<label>Qty do desconto</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>
+							    </ouibounce_qty_discount>
+
+	                    		<ouibounce_cupom translate="label">
+	                    			<label>Cupom de desconto</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>
+							    </ouibounce_cupom>
+
+	                    		<ouibounce_subject translate="label">
+	                    			<label>Assunto do envio</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>
+							    </ouibounce_subject>
+
+	                    		<ouibounce_email translate="label">
+	                    			<label>E-mail destinatário</label>
+	                    			<frontend_type>text</frontend_type>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>
+							    </ouibounce_email>
+
+	                    		<ouibounce_enabled translate="label">
+	                    			<label>Enabled</label>
+	                    			<frontend_type>select</frontend_type>
+	                    			<source_model>adminhtml/system_config_source_yesno</source_model>
+							        <sort_order>1</sort_order>
+							        <show_in_default>1</show_in_default>
+							        <show_in_website>1</show_in_website>
+							        <show_in_store>1</show_in_store>
+							    </ouibounce_enabled>
+
+	                    	</fields>
+
+            		</ouibounce_general>
+            	</groups>
+		</ouibounce_config>
+	</sections>
+</config>

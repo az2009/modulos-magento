@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<config>
+	<api2>
+		
+		<resource_groups>
+            <jbp_api translate="title" module="jbp_api">
+                <title>jbp_api</title>
+                <sort_order>10</sort_order>
+            </jbp_api>
+        </resource_groups>
+        
+        <!-- recurso para lista produtos -->
+		<resources>
+			<jbp_api_product translate="title" module="jbp_api">				
+				<group>jbp_api</group>				
+				<model>jbp_api/api2_product</model>				
+				<title>Products</title>				
+				
+				<!--define o nível de privilegios para acessar os recursos da API GUEST|ADMIN|CUSTOMER-->
+				<privileges>
+					<guest>
+						<retrieve>1</retrieve>
+					</guest>
+				</privileges>
+				
+				<!-- atributos retornados da action -->
+				<attributes translate="title" module="jbp_api">
+					<name>name</name>
+					<sku>sku</sku>
+					<entity_id>entity_id</entity_id>
+				</attributes>
+				<routes>				    
+				    <route_entity>
+                       <route>/jbp/api/product/:id</route> <!-- rota a ser chamada para acessar os métodos implantados -->
+                       <action_type>entity</action_type> <!-- tipo de retorno da action entity(array)|collection(objeto collection) -->
+                    </route_entity>                    
+                    <route_collection>
+                       <route>/jbp/api/products/:grower_id/:bidtype_id</route> <!-- rota a ser chamada para acessar os métodos implantados -->
+                       <action_type>collection</action_type> <!-- tipo de retorno da action entity(array)|collection(objeto collection) -->
+                    </route_collection>                    
+				</routes>				
+				 <versions>1</versions>
+			</jbp_api_product>
+			
+			<!-- recurso para listar clientes -->
+			<jbp_api_customer translate="title" module="jbp_api">				
+				<group>jbp_api</group>				
+				<model>jbp_api/api2_customer</model>				
+				<title>Customer</title>				
+				
+				<!--define o nível de privilegios para acessar os recursos da API GUEST|ADMIN|CUSTOMER-->
+				<privileges>
+					
+					<!-- ações que consumer pode fazer retrieve|update|delete|create valor padrão 1 -->
+					<guest>
+						<retrieve>1</retrieve>
+					</guest>
+				</privileges>
+				
+				<!-- atributos retornados da action -->
+				<attributes translate="title" module="jbp_api">
+					<firstname>firstname</firstname>
+					<lastname>lastname</lastname>
+					<email>email</email>
+					<entity_id>entity_id</entity_id>
+				</attributes>
+				<routes>				    
+				    <route_entity>
+                       <route>/jbp/api/customer/:id</route> <!-- rota a ser chamada para acessar os métodos implantados -->
+                       <action_type>entity</action_type> <!-- tipo de retorno da action entity(array)|collection(objeto collection) -->
+                    </route_entity>                    
+                    <route_collection>
+                       <route>/jbp/api/customers/:grower_id/:bidtype_id</route> <!-- rota a ser chamada para acessar os métodos implantados -->
+                       <action_type>collection</action_type> <!-- tipo de retorno da action entity(array)|collection(objeto collection) -->
+                    </route_collection>                    
+				</routes>				
+				 <versions>1</versions>
+			</jbp_api_customer>
+			
+		</resources>		
+	</api2>
+</config>
