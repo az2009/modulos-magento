@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Jbp_RulesPromotion>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_SalesRule />
+            </depends>
+        </Jbp_RulesPromotion>
+    </modules>
+</config>

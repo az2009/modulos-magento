@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Jbp_RulesPromotion>
+            <version>0.1.0</version>
+        </Jbp_RulesPromotion>
+    </modules>
+    <global>
+        <events>
+            <adminhtml_block_salesrule_actions_prepareform>
+                <observers>
+                    <prepareform_salesrule>
+                        <class>Jbp_RulesPromotion_Model_Observer_AdminhtmlBlockSalesruleActionsPrepareform</class>
+                        <method>addOptionToAction</method>
+                    </prepareform_salesrule>
+                </observers>
+            </adminhtml_block_salesrule_actions_prepareform>
+            <salesrule_validator_process>
+                <observers>
+                    <add_action_to_process>
+                        <class>Jbp_RulesPromotion_Model_Observer_SalesruleValidatorProcess</class>
+                        <method>addActionToProcess</method>
+                    </add_action_to_process>
+                </observers>
+            </salesrule_validator_process>
+        </events>
+        <resources>
+            <rulespromotion_setup>
+                <setup>
+                    <module>Jbp_RulesPromotion</module>
+                </setup>
+            </rulespromotion_setup>
+        </resources>
+    </global>
+</config>
