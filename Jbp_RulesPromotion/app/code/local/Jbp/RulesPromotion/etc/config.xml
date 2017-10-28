@@ -6,6 +6,11 @@
         </Jbp_RulesPromotion>
     </modules>
     <global>
+        <models>
+            <jbp_rulespromotion>
+                <class>Jbp_RulesPromotion_Model</class>
+            </jbp_rulespromotion>
+        </models>
         <events>
             <adminhtml_block_salesrule_actions_prepareform>
                 <observers>
@@ -23,6 +28,14 @@
                     </add_action_to_process>
                 </observers>
             </salesrule_validator_process>
+            <salesrule_rule_condition_combine>
+                <observers>
+                    <add_condition_to_sales_rule>
+                        <class>Jbp_RulesPromotion_Model_Observer_SalesruleRuleConditionCombine</class>
+                        <method>addConditionToSalesRule</method>
+                    </add_condition_to_sales_rule>
+                </observers>
+            </salesrule_rule_condition_combine>
         </events>
         <resources>
             <rulespromotion_setup>
