@@ -49,6 +49,20 @@ class Jbp_RulesPromotion_Model_Condition_Incart
         return $this->_defaultOperatorInputByType;
     }
 
+
+    public function asHtml()
+    {
+        $html = $this->getTypeElementHtml()
+            .$this->getAttributeElementHtml()
+            .$this->getOperatorElementHtml()
+            .$this->getValueElementHtml()
+            .', <span> aplicar a <strong>Ação</strong> para os produtos com o(s) sku(s) selecionado(s)</span>'
+            .$this->getRemoveLinkHtml()
+            .$this->getChooserContainerHtml();
+        return $html;
+    }
+
+
     /**
      * Validate Rule Condition
      *
